@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Gowun+Dodum&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Comfortaa:wght@700&family=Do+Hyeon&family=Gowun+Dodum&family=Permanent+Marker&display=swap');
+
+/* backups */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Gowun+Dodum&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Comfortaa:wght@700&family=Gowun+Dodum&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Comfortaa:wght@700&family=Gowun+Dodum&family=Permanent+Marker&display=swap');
+
+:root {
+    --ft-color-black: #000;
+    --bs-color-blue: #0d6efd;
+    --bs-color-indigo: #6610f2;
+    --bs-color-purple: #6f42c1;
+    --bs-color-pink: #d63384;
+    --bs-color-red: #dc3545;
+    --bs-color-orange: #fd7e14;
+    --bs-color-yellow: #ffc107;
+    --bs-color-green: #198754;
+    --bs-color-teal: #20c997;
+    --bs-color-cyan: #0dcaf0;
+    --bs-color-white: #fff;
+    --bs-color-gray: #6c757d;
+    --bs-color-gray-dark: #343a40;
+    --bs-color-primary: #0d6efd;
+    --bs-color-secondary: #6c757d;
+    --bs-color-success: #198754;
+    --bs-color-info: #0dcaf0;
+    --bs-color-warning: #ffc107;
+    --bs-color-danger: #dc3545;
+    --bs-color-light: #f8f9fa;
+    --bs-color--dark: #212529;
+    --bs-color--green: #064420;
+}
+.mode{
+    padding: 20px;
+    height: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    grid-template-rows: 1fr 1fr;
+    color: white;
+    background-color: #faf2da;
+    font-family: 'Gowun Dodum','poppins';
+    font-size: 2.2rem;
+    font-display: center;
+}
+.mode .top_left:hover{
+    transform: scale(1.05);
+    background-image: url('/screen/image/sky2.jpg');
+    background-position: center;
+    background-size: cover;
+    background-color:  #94D0CC;
+}
+.mode .top_right:hover{
+    transform: scale(1.05);
+    background-image: url('/screen/image/sky2.jpg');
+    background-position: center;
+    background-position: center;
+    background-size: cover;
+    background-color:  #94D0CC;
+}
+.mode .bottom_left:hover{
+    transform: scale(1.05);
+    background-image: url('/screen/image/sky2.jpg');
+    background-position: center;
+    background-position: center;
+    background-size: cover;
+    background-color: #94D0CC;
+}
+.mode .bottom_right:hover{
+    transform: scale(1.05);
+    background-image: url('/screen/image/sky2.jpg');
+    background-position: center;
+    background-position: center;
+    background-size: cover;
+    background-color: #94D0CC;
+}
+
+.mode .top_left{
+    background-Color:#F29191;
+    border-radius: 10px;
+    text-align: center;
+}
+.mode .top_right{
+    background-Color:#F29191;
+    border-radius: 10px;
+    text-align: center;
+}
+.mode .bottom_left{
+    background-Color:#F29191;
+    border-radius: 10px;
+    text-align: center;
+}
+.mode .bottom_right{
+    background-Color:#F29191;
+    border-radius: 10px;
+    text-align: center;
+} 
+
+/* 꼬리 스타일 */
+/* footer {
+    padding: 20px;
+    height: 300px;
+    background-color: rgb(245, 182, 182);
+    text-align: center;
+    color: rgb(17, 83, 39);
+}
+
+footer p {
+    width: 70%;
+    margin: 0 auto;
+    background-color: rgb(245,182,182);
+}
+
+.developers {
+    margin: 20px 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.developers a {
+    text-decoration: none;
+    color:rgb(17, 83, 39);
+}
+
+.developers .developers-git {
+    margin-bottom: 10px;
+    color: rgb(17,83,39);
+}
+
+.developers .developers-id {
+    width: 100px;
+    font-size: .9rem;
+}
+
+/* 구분선 */
+.line {
+    height: 1px;
+    width: 95%;
+    margin: 10px auto;
+    background-color: rgb(248, 181, 169);
+    border: none;
+} */
