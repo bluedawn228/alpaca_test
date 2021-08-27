@@ -12,7 +12,7 @@ import com.mulcam.alpaca.vo.ReviewVO;
 public interface ReviewDAO {
 
   // 글쓰기
-  int selectrImgIdNextval() throws Exception;
+  int selectRImgNextval() throws Exception;
 
   void insertRImg(FileVO rImg) throws Exception;
 

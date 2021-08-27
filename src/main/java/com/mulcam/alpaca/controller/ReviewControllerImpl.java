@@ -35,14 +35,15 @@ public class ReviewControllerImpl implements ReviewController {
     ModelAndView mv = new ModelAndView();
     System.out.println("aa");
     try {
-      if (rImg != null && !rImg.isEmpty()) {
-        FileVO newFile = new FileVO();
+      FileVO newFile = null;
+      if (rImg != null && !rImg.isEmpty()) { // &&button name='1'
+        newFile = new FileVO();
         newFile.setFileName(rImg.getOriginalFilename());
         newFile.setFileSize(rImg.getSize());
         newFile.setFileContentType(rImg.getContentType());
         newFile.setFileData(rImg.getBytes());
-        reviewService.writeReview(newFile, review);
       }
+      reviewService.writeReview(newFile, review);
       mv.setViewName("redirect:/review/boardlist");
     } catch (Exception e) {
       e.printStackTrace();

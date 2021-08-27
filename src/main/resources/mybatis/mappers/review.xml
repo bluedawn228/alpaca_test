@@ -3,33 +3,34 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.alpaca.dao.ReviewDAO">
 	
-	<insert id="selectRImgNextval">
+	<select id="selectRImgNextval" resultType="int">
 		<![CDATA[
-		select r_img_test_sq.nextval from dual
+		select r_img_sq.nextval from dual
 		]]>	
-	</insert>
+	</select>
 
 	<insert id="insertRImg" parameterType="FileVO">
 		<![CDATA[
-		insert into tbl_r_img_test
+		insert into tbl_r_img
 		(r_img_id, file_name, file_size, file_content_type, file_upload_date, file_data, regdate, updatedate)
-		values(#{r_img_id}, #{file_name}, #{file_size}, #{file_content_type}, current_timestamp, #{file_data}, sysdate, sysdate)
+		values(#{fileId}, #{fileName}, #{fileSize}, #{fileContentType}, current_timestamp, #{fileData}, sysdate, sysdate)
 		]]>	
 	</insert>
 	
 	<insert id="insertReviewTemp" parameterType="ReviewVO">
 		<![CDATA[
-		insert into tbl_review_test
+		insert into tbl_review
 		(review_id, r_img_id, email, pos, company, title, content, comm_cnt, like_cnt, view_cnt, regdate, updatedate, temp)
-		values(review_sq.nextval, #{r_img_id}, e@naver.com, #{pos}, #{company}, #{title}, #{content}, #{comm_cnt}, #{like_cnt}, #{view_cnt}, sysdate, sysdate, 1)
+		values(review_sq.nextval, #{fileId}, 'e@naver.com', #{pos}, #{company}, #{title}, #{content}, #{commCnt}, #{likeCnt}, #{viewCnt}, sysdate, sysdate, '1')
 		]]>	
 	</insert>
 	
 	<insert id="insertReview" parameterType="ReviewVO">
 		<![CDATA[
-		insert into tbl_review_test 
+ 		insert into tbl_review
 		(review_id, r_img_id, email, pos, company, title, content, comm_cnt, like_cnt, view_cnt, regdate, updatedate, temp)
-		values(review_sq.nextval, #{r_img_id}, e@naver.com, #{pos}, #{company}, #{title}, #{content}, #{comm_cnt}, #{like_cnt}, #{view_cnt}, sysdate, sysdate, 0)
+		values(review_sq.nextval, #{fileId}, #{email}, #{pos}, #{company}, #{title}, #{content}, #{commCnt}, #{likeCnt}, #{viewCnt}, sysdate, sysdate, '0')
+		
 		]]>	
 	</insert>
 	

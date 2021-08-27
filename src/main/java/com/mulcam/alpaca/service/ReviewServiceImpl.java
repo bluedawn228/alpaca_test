@@ -13,15 +13,21 @@ public class ReviewServiceImpl implements ReviewService {
 
   @Override
   public void writeReview(FileVO rImg, ReviewVO review) throws Exception {
-    int fileId = reviewDAO.selectrImgIdNextval();
-    rImg.setFileId(fileId);
-    reviewDAO.insertRImg(rImg);
-    // review.setEmail(email);
-    review.setFileId(fileId);
+    if (rImg != null) {
+      int fileId = reviewDAO.selectRImgNextval();
+      rImg.setFileId(fileId);
+      reviewDAO.insertRImg(rImg);
+      review.setFileId(fileId);
+    } else {
+      review.setFileId(8);
+    }
+    review.setEmail("e@naver.com");
     review.setCommCnt(0);
     review.setLikeCnt(0);
     review.setViewCnt(0);
+    System.out.println(review.getPos());
     reviewDAO.insertReview(review);
+    System.out.println("cc");
   }
   //
   // @Override
