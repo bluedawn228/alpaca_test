@@ -7,17 +7,9 @@
 <title>main</title>
 </head>
 <body>
-
-	<div>
-		<jsp:include page='header.jsp'/>
-	</div>
 	
 	<div>
 		<jsp:include page='${page}.jsp'/>
-	</div>
-	
-	<div>
-		<jsp:include page='footer.jsp'/>
 	</div>
 
 

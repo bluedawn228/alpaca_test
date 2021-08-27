@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
       reviewDAO.insertRImg(rImg);
       review.setFileId(fileId);
     } else {
-      review.setFileId(8);
+      review.setFileId(1);
     }
     review.setEmail("e@naver.com");
     review.setCommCnt(0);
