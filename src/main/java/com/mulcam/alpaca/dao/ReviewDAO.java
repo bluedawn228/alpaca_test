@@ -26,6 +26,8 @@ public interface ReviewDAO {
 
   List<ReviewVO> selectReviewList(int startrow) throws Exception;
 
+  String selectNameByE(String email) throws Exception;
+
 
   // 키워드 게시판 리스트
   int selectReviewKeyCount(String keyword) throws Exception;

@@ -3,6 +3,9 @@
 							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mulcam.alpaca.dao.ReviewDAO">
 	
+	
+	<!-- 글쓰기 -->
+	
 	<select id="selectRImgNextval" resultType="int">
 		<![CDATA[
 		select r_img_sq.nextval from dual
@@ -33,6 +36,30 @@
 		
 		]]>	
 	</insert>
+	
+	
+	
+	<!-- 게시판 리스트 -->
+	
+	<select id="selectReviewCount" resultType="int">
+		<![CDATA[
+		select count(*) from tbl_review where temp=0
+		]]>		
+	</select>
+	
+	<select id="selectReviewList" resultType="ReviewVO" parameterType="int">
+		<![CDATA[  
+		select *
+		from (select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc) 
+		where temp=0 and num between #{startrow} and #{startrow}+10
+		]]>
+	</select>
+	
+	<select id="selectNameByE" resultType="String" parameterType="String">
+		<![CDATA[  
+		select name from tbl_member where email = #{email}
+		]]>
+	</select>
 	
 	
 </mapper>

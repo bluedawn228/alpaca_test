@@ -13,10 +13,11 @@ public interface ReviewController {
   ModelAndView writeReview(@ModelAttribute ReviewVO review, @RequestParam MultipartFile file,
       RedirectAttributes redirectAttrs);
 
-  // ModelAndView boardList(
-  // // required = false, defaultValue = "1" : 처음페이지 부를때 특정 페이지목록 url 짚어 부르지 않으므로 그때는 1페이지보여주자
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
-  //
+  ModelAndView boardList(
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page);
+
+
+
   // ModelAndView boardDetail(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
   //

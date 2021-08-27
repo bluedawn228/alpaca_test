@@ -1,17 +1,21 @@
 package com.mulcam.alpaca.controller;
 
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mulcam.alpaca.service.ReviewService;
 import com.mulcam.alpaca.vo.FileVO;
+import com.mulcam.alpaca.vo.PageInfo;
 import com.mulcam.alpaca.vo.ReviewVO;
 
 @Controller
@@ -44,7 +48,7 @@ public class ReviewControllerImpl implements ReviewController {
         newFile.setFileData(rImg.getBytes());
       }
       reviewService.writeReview(newFile, review);
-      mv.setViewName("redirect:/review/boardlist");
+      mv.setViewName("redirect:/review/board_review");
     } catch (Exception e) {
       e.printStackTrace();
       mv.addObject("err", "새 글 등록 실패");
@@ -55,25 +59,29 @@ public class ReviewControllerImpl implements ReviewController {
 
 
 
-  // @Override
-  // @RequestMapping(value = "boardlist", method = {RequestMethod.GET, RequestMethod.POST})
-  // public ModelAndView boardList(
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-  // PageInfo pageInfo = new PageInfo();
-  // ModelAndView mv = new ModelAndView();
-  // try {
-  // List<Review> articleList = reviewService.getBoardList(page, pageInfo); // pageInfo 출력해야해. 붕어빵틀
-  // // 줄테니 page값으로 만들어와
-  // mv.addObject("pageInfo", pageInfo); // 하단 start end page값 넘길게
-  // mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
-  // mv.setViewName("/review/listform"); // 화면에 이걸 띄워줘
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // mv.addObject("err", e.getMessage());
-  // mv.setViewName("/review/err");
-  // }
-  // return mv;
-  // }
+  @Override
+  @RequestMapping(value = "board_review", method = {RequestMethod.GET, RequestMethod.POST})
+  public ModelAndView boardList(
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    PageInfo pageInfo = new PageInfo();
+    ModelAndView mv = new ModelAndView();
+    try {
+      List<ReviewVO> articleList = reviewService.getBoardList(page, pageInfo); // pageInfo_출력해야해_만들어와
+      List<Map<String, ReviewVO>> nameMapList = reviewService.getNameList(articleList);
+      mv.addObject("nameMapList", nameMapList);
+      mv.addObject("pageInfo", pageInfo); // 하단 start end page값 넘길게
+      // mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
+      mv.setViewName("/review/board_review"); // 화면에 이걸 띄워줘
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", e.getMessage());
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
+
+
+
   //
   //
   // @GetMapping("/fileview/{filename}") // 서버->브라우저 불러오기 매소드 / getRealPath("/uploadBoard/"); 폴더에
