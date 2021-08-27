@@ -70,13 +70,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 
 
-  //
-  // @Override
-  // public ReviewVO getBoard(int board_num) throws Exception {
-  // reviewDAO.updateReadCount(board_num); // 조회수 증가
-  // return reviewDAO.selectBoard(board_num);
-  // }
-  //
+  @Override
+  public ReviewVO getBoard(int reviewId) throws Exception {
+    reviewDAO.updateViewCount(reviewId); // 조회수 증가
+    return reviewDAO.selectReview(reviewId);
+  }
+
   // @Override
   // public void regReply(ReviewVO review) throws Exception {
   // reviewDAO.updateBoardReSeq(review);

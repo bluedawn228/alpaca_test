@@ -10,8 +10,9 @@ public interface ReviewService {
   void writeReview(FileVO rImg, ReviewVO review) throws Exception;
 
   List<ReviewVO> getBoardList(int page, PageInfo pageInfo) throws Exception;
-  //
-  // ReviewVO getBoard(int board_num) throws Exception;
+
+  ReviewVO getBoard(int reviewId) throws Exception;
+
   //
   // void regReply(ReviewVO review) throws Exception;
   //

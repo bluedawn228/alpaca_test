@@ -119,23 +119,23 @@ public class ReviewControllerImpl implements ReviewController {
   // }
   //
   //
-  // @Override
-  // @GetMapping("/boarddetail")
-  // public ModelAndView boardDetail(@RequestParam("board_num") int board_num,
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-  // ModelAndView mv = new ModelAndView();
-  // try {
-  // Review board = reviewService.getBoard(board_num);
-  // mv.addObject("article", board);
-  // mv.addObject("page", page);
-  // mv.setViewName("/review/viewform");
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // mv.addObject("err", "글 조회 실패");
-  // mv.setViewName("/review/err");
-  // }
-  // return mv;
-  // }
+  @Override
+  @GetMapping("/board_review_detail")
+  public ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    ModelAndView mv = new ModelAndView();
+    try {
+      ReviewVO review = reviewService.getBoard(reviewId);
+      mv.addObject("article", review);
+      mv.addObject("page", page);
+      mv.setViewName("/review/viewform");
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", "글 조회 실패");
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
   //
   // @Override
   // @GetMapping("/replyform")

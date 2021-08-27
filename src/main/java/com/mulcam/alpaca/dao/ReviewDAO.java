@@ -26,7 +26,7 @@ public interface ReviewDAO {
 
   List<ReviewVO> selectReviewList(int startrow) throws Exception;
 
-  String selectNameByE(String email) throws Exception;
+  String selectNameByE(String email) throws Exception; // 안씀
 
 
   // 키워드 게시판 리스트
@@ -56,9 +56,11 @@ public interface ReviewDAO {
 
 
   // 게시글 수정
+  void updateReview(ReviewVO review) throws Exception;
+
   void updateRImg(FileVO rImg) throws Exception;
 
-  void updateReview(ReviewVO review) throws Exception;
+
 
   // 게시글 삭제
   void deleteReview(int reviewId) throws Exception;

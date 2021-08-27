@@ -60,6 +60,24 @@
 		select name from tbl_member where email = #{email}
 		]]>
 	</select>
+
+	
+	<!-- 공게 게시판 상세 -->
+	
+	<select id="selectReview" resultType="ReviewVO" parameterType="int">
+		<![CDATA[
+		select * from tbl_review r, tbl_r_img i 
+		where review_id=#{reviewId} and r.r_img_id=i.r_img_id
+		]]>		
+	</select>
+	
+	<!-- 게시글 수정 -->
+	
+	<update id="updateViewCount" parameterType="int">
+		<![CDATA[
+		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}
+		]]>		
+	</update>
 	
 	
 </mapper>

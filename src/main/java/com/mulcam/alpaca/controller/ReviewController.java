@@ -18,8 +18,8 @@ public interface ReviewController {
 
 
 
-  // ModelAndView boardDetail(@RequestParam("board_num") int board_num,
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
+  ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page);
   //
   // ModelAndView replyform(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
