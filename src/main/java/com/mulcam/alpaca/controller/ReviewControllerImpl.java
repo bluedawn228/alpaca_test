@@ -1,7 +1,6 @@
 package com.mulcam.alpaca.controller;
 
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,10 +66,10 @@ public class ReviewControllerImpl implements ReviewController {
     ModelAndView mv = new ModelAndView();
     try {
       List<ReviewVO> articleList = reviewService.getBoardList(page, pageInfo); // pageInfo_출력해야해_만들어와
-      List<Map<String, ReviewVO>> nameMapList = reviewService.getNameList(articleList);
-      mv.addObject("nameMapList", nameMapList);
+      // List<Map<String, ReviewVO>> nameMapList = reviewService.getNameList(articleList);
+      // mv.addObject("nameMapList", nameMapList);
       mv.addObject("pageInfo", pageInfo); // 하단 start end page값 넘길게
-      // mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
+      mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
       mv.setViewName("/review/board_review"); // 화면에 이걸 띄워줘
     } catch (Exception e) {
       e.printStackTrace();

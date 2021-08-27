@@ -202,21 +202,20 @@
 									</tr>
 								</thead>
 
-								<c:forEach var="nameMap" items="${nameMapList}">
-									<c:forEach var="nameMapItem" items="${nameMap}">
-										<tbody class="board-body">
-											<tr>
-												<td><a href="#">${nameMapItem.value.pos}</a></td>
-												<td><a href="#">${nameMapItem.value.company}</a></td>
-												<%-- <td><a href="./board_review_detail?reviewId=${nameMap.value.reviewId}&page=${pageInfo.page}"><span></span>${article.title}</a></td> --%>
-												<td><a href="#">${nameMapItem.key}</a></td>
-												<!--  name -->
-												<td><a href="#">${nameMapItem.value.regdate}</a></td>
-												<td><a href="#">${nameMapItem.value.viewCnt}</a></td>
-												<td><a href="#">${nameMapItem.value.likeCnt}</a></td>
-											</tr>
-										</tbody>
-									</c:forEach>
+								<c:forEach var="article" items="${articleList}">
+									<tbody class="board-body">
+										<tr>
+											<td><a href="#">${article.pos}</a></td>
+											<td><a href="#">${article.company}</a></td>
+											<td><a
+												href="./board_review_detail?reviewId=${article.reviewId}&page=${pageInfo.page}"><span></span>${article.title}</a></td>
+											<td><a href="#">${article.name}</a></td>
+											<!--  name -->
+											<td><a href="#">${article.regdate}</a></td>
+											<td><a href="#">${article.viewCnt}</a></td>
+											<td><a href="#">${article.likeCnt}</a></td>
+										</tr>
+									</tbody>
 								</c:forEach>
 							</table>
 						</section>

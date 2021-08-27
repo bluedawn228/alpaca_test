@@ -1,9 +1,6 @@
 package com.mulcam.alpaca.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mulcam.alpaca.dao.ReviewDAO;
@@ -56,20 +53,20 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDAO.selectReviewList(startrow);
   }
 
-  @Override
-  public List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception {
-
-    // List<Map<String, Object>> 라는형식으로, 리스트 안에 쿼리에서 불러온 List를 넣어준다.
-    List<Map<String, ReviewVO>> mapList = new ArrayList<>();
-
-    for (ReviewVO review : articleList) {
-      Map<String, ReviewVO> nameMap = new HashMap<>();
-      String name = reviewDAO.selectNameByE(review.getEmail());
-      nameMap.put(name, review);
-      mapList.add(nameMap);
-    }
-    return mapList;
-  }
+  // @Override
+  // public List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception {
+  //
+  // // List<Map<String, Object>> 라는형식으로, 리스트 안에 쿼리에서 불러온 List를 넣어준다.
+  // List<Map<String, ReviewVO>> mapList = new ArrayList<>();
+  //
+  // for (ReviewVO review : articleList) {
+  // Map<String, ReviewVO> nameMap = new HashMap<>();
+  // String name = reviewDAO.selectNameByE(review.getEmail());
+  // nameMap.put(name, review);
+  // mapList.add(nameMap);
+  // }
+  // return mapList;
+  // }
 
 
 

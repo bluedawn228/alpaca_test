@@ -19,6 +19,11 @@ public class ReviewVO { // db 컬럼명과 동일!, 컬럼보다 수 많은 건 
   private Date updatedate;
   private boolean temp;
 
+  private int pfImgId;
+  private String name;
+
+
+
   public int getReviewId() {
     return reviewId;
   }
@@ -122,6 +127,22 @@ public class ReviewVO { // db 컬럼명과 동일!, 컬럼보다 수 많은 건 
 
   public void setTemp(boolean temp) {
     this.temp = temp;
+  }
+
+  public int getPfImgId() {
+    return pfImgId;
+  }
+
+  public void setPfImgId(int pfImgId) {
+    this.pfImgId = pfImgId;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 

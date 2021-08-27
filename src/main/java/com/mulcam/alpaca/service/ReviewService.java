@@ -1,7 +1,6 @@
 package com.mulcam.alpaca.service;
 
 import java.util.List;
-import java.util.Map;
 import com.mulcam.alpaca.vo.FileVO;
 import com.mulcam.alpaca.vo.PageInfo;
 import com.mulcam.alpaca.vo.ReviewVO;
@@ -20,6 +19,6 @@ public interface ReviewService {
   //
   // void removeBoard(int board_num, String password) throws Exception;
 
-  List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception;
+  // List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception;
 
 }
