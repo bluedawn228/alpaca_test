@@ -149,7 +149,7 @@
 		<!-- 페이지 타이틀 -->
 		<div class="board-edit">
 			<div class="total-count">
-				<span>00000</span>개의 글
+				<span>${pageInfo.listCount}</span>개의 글
 			</div>
 			<div class="edit-btn-box">
 				<button class="btn edit-btn">임시저장 글 보기</button>

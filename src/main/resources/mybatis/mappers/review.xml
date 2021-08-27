@@ -49,9 +49,9 @@
 	
 	<select id="selectReviewList" resultType="ReviewVO" parameterType="int">
 		<![CDATA[  
-		select *
-		from (select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc) 
-		where temp=0 and num between #{startrow} and #{startrow}+10
+		select m.name, r.*
+  		  from ((select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc)) z, tbl_review r, tbl_member m 
+   		 where r.temp=0 and z.num between #{startrow} and #{startrow}+10 and r.email=m.email and r.review_id=z.review_id
 		]]>
 	</select>
 	
