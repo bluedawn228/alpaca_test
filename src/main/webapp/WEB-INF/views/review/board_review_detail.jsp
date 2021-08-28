@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -185,7 +187,9 @@
 
 					<div class="group-detail-row">
 						<div class="detail-row">
-							<img class="detail-img" src="image/sky.jpg" alt="">
+							<!-- <img class="detail-img" src="image/sky.jpg" alt=""> -->
+							<img src='<c:url value="/img/${profile.fileId}"/>' width="100"
+											class="img-thumbnail">
 						</div>
 						<div class="detail-row">
 							<p class="text item">${review.name}</p>
@@ -202,8 +206,7 @@
 					<div class=content>
 
 						<!-- 첨부파일 -->
-
-<%-- 						<tr>
+ 						<tr>
 							<td><c:set var="len" value="${fn:length(file.fileName)}" />
 								<c:set var="filetype"
 									value="${fn:toUpperCase(fn:substring(file.fileName, len-4, len))}" />
@@ -219,10 +222,7 @@
 										<br>
 									</c:otherwise>
 								</c:choose></td>
-
-							<td><a href='<c:url value="/upload/delete/${file.fileId}"/>'
-								class="delete">삭제</a></td>
-						</tr> --%>
+						</tr> 
 
 
 

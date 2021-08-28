@@ -1,5 +1,6 @@
 package com.mulcam.alpaca.controller;
 
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -92,6 +93,9 @@ public class ReviewControllerImpl implements ReviewController {
     try {
       ReviewVO review = reviewService.getBoard(reviewId);
       FileVO file = reviewService.getFile(review.getFileId());
+      FileVO profile = reviewService.getPfImg(review.getEmail());
+
+      mv.addObject("profile", profile);
       mv.addObject("file", file);
       mv.addObject("review", review);
       mv.addObject("page", page);
@@ -100,8 +104,6 @@ public class ReviewControllerImpl implements ReviewController {
       e.printStackTrace();
       mv.addObject("err", "글 조회 실패");
       mv.setViewName("/review/err");
-      // 사진 보이기 확인
-
     }
     return mv;
   }
@@ -110,15 +112,18 @@ public class ReviewControllerImpl implements ReviewController {
   @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
   public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception { // @PathVariable_url값을_변수로_담는다
     FileVO file = reviewService.getFile(fileId);
+    System.out.println("a");
     final HttpHeaders headers = new HttpHeaders(); // 상수화
+    System.out.println("b");
     if (file != null) {
       String[] mtypes = file.getFileContentType().split("/");
       headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
       headers.setContentDispositionFormData("attachment", file.getFileName());
       headers.setContentLength(file.getFileSize());
+      System.out.println("c");
       return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
-
     } else {
+      System.out.println("d");
       return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
     }
   }

@@ -76,8 +76,14 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDAO.selectReview(reviewId);
   }
 
+  @Override
   public FileVO getFile(int fileId) throws Exception {
     return reviewDAO.getFile(fileId);
+  }
+
+  @Override
+  public FileVO getPfImg(String email) throws Exception {
+    return reviewDAO.selectPfImg(email);
   }
 
 

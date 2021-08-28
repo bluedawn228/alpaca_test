@@ -60,6 +60,8 @@ public interface ReviewDAO {
 
   void deleteFile(int fileId);
 
+  FileVO selectPfImg(String email);
+
 
   // 게시글 수정
   void updateReview(ReviewVO review) throws Exception;
