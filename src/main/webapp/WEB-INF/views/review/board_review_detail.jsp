@@ -188,7 +188,7 @@
 					<div class="group-detail-row">
 						<div class="detail-row">
 							<!-- <img class="detail-img" src="image/sky.jpg" alt=""> -->
-							<img src='<c:url value="/img/${profile.fileId}"/>' width="100"
+							<img src='<c:url value="review/img/${profile.fileId}"/>' width="100"
 											class="img-thumbnail">
 						</div>
 						<div class="detail-row">
@@ -213,12 +213,12 @@
 								<c:choose>
 									<c:when
 										test="${(filetype eq '.JPG') or (filetype eq 'JPEG') or (filetype eq '.PNG') or (filetype eq '.GIF')}">
-										<img src='<c:url value="/img/${file.fileId}"/>' width="100"
+										<img src='<c:url value="review//img/${file.fileId}"/>' width="100"
 											class="img-thumbnail">
 										<br>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/pds/${file.fileId}"/>'>${file.fileName}</a>
+										<a href='<c:url value="review//pds/${file.fileId}"/>'>${file.fileName}</a>
 										<br>
 									</c:otherwise>
 								</c:choose></td>
