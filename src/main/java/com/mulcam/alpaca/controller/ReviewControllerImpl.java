@@ -3,10 +3,13 @@ package com.mulcam.alpaca.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,15 +92,7 @@ public class ReviewControllerImpl implements ReviewController {
     try {
       ReviewVO review = reviewService.getBoard(reviewId);
       FileVO file = reviewService.getFile(review.getFileId());
-      final HttpHeaders headers = new HttpHeaders(); // 상수화
-      if (file != null) {
-        String[] mtypes = file.getFileContentType().split("/");
-        headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
-        headers.setContentDispositionFormData("attachment", file.getFileName());
-        headers.setContentLength(file.getFileSize());
-      }
       mv.addObject("file", file);
-      mv.addObject("headers", headers);
       mv.addObject("review", review);
       mv.addObject("page", page);
       mv.setViewName("/review/board_review_detail");
@@ -112,23 +107,21 @@ public class ReviewControllerImpl implements ReviewController {
   }
 
 
-  // @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
-  // public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) {
-  // FileVO file = reviewService.getFile(fileId);
-  // final HttpHeaders headers = new HttpHeaders(); // 상수화
-  // if (file != null) {
-  // String[] mtypes = file.getFileContentType().split("/");
-  // headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
-  // headers.setContentDispositionFormData("attachment", file.getFileName());
-  // headers.setContentLength(file.getFileSize());
-  // return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
-  //
-  // } else {
-  // return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
-  // }
-  // }
-  //
+  @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
+  public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception { // @PathVariable_url값을_변수로_담는다
+    FileVO file = reviewService.getFile(fileId);
+    final HttpHeaders headers = new HttpHeaders(); // 상수화
+    if (file != null) {
+      String[] mtypes = file.getFileContentType().split("/");
+      headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
+      headers.setContentDispositionFormData("attachment", file.getFileName());
+      headers.setContentLength(file.getFileSize());
+      return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
 
+    } else {
+      return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
+    }
+  }
 
 
   //
