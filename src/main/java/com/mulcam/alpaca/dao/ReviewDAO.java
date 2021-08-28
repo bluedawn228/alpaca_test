@@ -54,6 +54,12 @@ public interface ReviewDAO {
 
   void updateViewCount(int reviewId) throws Exception;
 
+  // 게시글 상세 - 첨부파일
+
+  FileVO getFile(int fileId);
+
+  void deleteFile(int fileId);
+
 
   // 게시글 수정
   void updateReview(ReviewVO review) throws Exception;

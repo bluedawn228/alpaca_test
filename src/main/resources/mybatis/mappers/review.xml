@@ -98,6 +98,30 @@
 		]]>		
 	</select>
 	
+	<!-- 공개 게시판 상세 첨부파일 -->
+	
+	<select id="getFile" parameterType="int" resultType="fileVO">
+	<![CDATA[
+	select 
+		r_img_id as "fileId",
+		file_name as "fileName",
+		file_size as "fileSize",
+		file_content_type as "fileContentType",
+		file_upload_date as "fileUploadDate",
+		file_data as "fileData",
+		regdate as "regdate",
+		updatedate as "updatedate"
+        from tbl_r_img
+        where r_img_id=#{fileId}
+	]]>
+	</select>
+	
+<!-- 	<delete id="deleteFile" parameterType="int">
+		<![CDATA[
+		delete from upload_file where file_id=#{fileId}
+		]]>
+	</delete> -->
+	
 	<!-- 게시글 수정 -->
 	
 	<update id="updateViewCount" parameterType="int">
@@ -105,6 +129,8 @@
 		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}
 		]]>		
 	</update>
+	
+	
 	
 	
 </mapper>

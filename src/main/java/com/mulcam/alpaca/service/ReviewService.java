@@ -13,6 +13,8 @@ public interface ReviewService {
 
   ReviewVO getBoard(int reviewId) throws Exception;
 
+  FileVO getFile(int fileId) throws Exception;
+
   //
   // void regReply(ReviewVO review) throws Exception;
   //

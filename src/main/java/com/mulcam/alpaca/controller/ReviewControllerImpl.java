@@ -2,6 +2,8 @@ package com.mulcam.alpaca.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -79,46 +81,6 @@ public class ReviewControllerImpl implements ReviewController {
     return mv;
   }
 
-
-
-  //
-  //
-  // @GetMapping("/fileview/{filename}") // 서버->브라우저 불러오기 매소드 / getRealPath("/uploadBoard/"); 폴더에
-  // // 클라이언트가 업로드한파일저장
-  // public void fileview(@PathVariable String filename, HttpServletRequest request,
-  // HttpServletResponse response) {
-  // String path = request.getServletContext().getRealPath("/uploadBoard/");
-  // File file = new File(path + filename);
-  //
-  // String sfilename = null;
-  // FileInputStream fis = null;
-  // try {
-  // // 한글 파일명 깨지지 않게 인코딩
-  // if (request.getHeader("User-Agent").indexOf("MSIE") > -1) { // ie
-  // sfilename = URLEncoder.encode(file.getName(), "utf-8");
-  // } else { // 나머지 브라우저
-  // sfilename = new String(file.getName().getBytes("utf-8"), "ISO-8859-1");
-  // }
-  // response.setCharacterEncoding("utf-8");
-  // response.setContentType("application/octet-stream;charset=utf-8");
-  // response.setHeader("Content-Disposition", "attachment; filename=\"" + sfilename + "\";");
-  // OutputStream out = response.getOutputStream();
-  // fis = new FileInputStream(file);
-  // FileCopyUtils.copy(fis, out);
-  // out.flush();
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // } finally {
-  // if (fis != null) {
-  // try {
-  // fis.close();
-  // } catch (Exception e) {
-  // }
-  // }
-  // }
-  // }
-  //
-  //
   @Override
   @GetMapping("/board_review_detail")
   public ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
@@ -126,6 +88,16 @@ public class ReviewControllerImpl implements ReviewController {
     ModelAndView mv = new ModelAndView();
     try {
       ReviewVO review = reviewService.getBoard(reviewId);
+      FileVO file = reviewService.getFile(review.getFileId());
+      final HttpHeaders headers = new HttpHeaders(); // 상수화
+      if (file != null) {
+        String[] mtypes = file.getFileContentType().split("/");
+        headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
+        headers.setContentDispositionFormData("attachment", file.getFileName());
+        headers.setContentLength(file.getFileSize());
+      }
+      mv.addObject("file", file);
+      mv.addObject("headers", headers);
       mv.addObject("review", review);
       mv.addObject("page", page);
       mv.setViewName("/review/board_review_detail");
@@ -134,9 +106,31 @@ public class ReviewControllerImpl implements ReviewController {
       mv.addObject("err", "글 조회 실패");
       mv.setViewName("/review/err");
       // 사진 보이기 확인
+
     }
     return mv;
   }
+
+
+  // @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
+  // public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) {
+  // FileVO file = reviewService.getFile(fileId);
+  // final HttpHeaders headers = new HttpHeaders(); // 상수화
+  // if (file != null) {
+  // String[] mtypes = file.getFileContentType().split("/");
+  // headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
+  // headers.setContentDispositionFormData("attachment", file.getFileName());
+  // headers.setContentLength(file.getFileSize());
+  // return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
+  //
+  // } else {
+  // return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
+  // }
+  // }
+  //
+
+
+
   //
   // @Override
   // @GetMapping("/replyform")

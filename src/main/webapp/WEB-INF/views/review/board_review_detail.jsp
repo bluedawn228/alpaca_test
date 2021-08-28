@@ -200,33 +200,31 @@
 					</div>
 					
 					<div class=content>
-
+					
+						<!-- 첨부파일 -->
+					
 						<tr>
-							<td><input type="checkbox" name="fileIds"
-								value="${file.fileId}">${file.fileId}</td>
-							<td>${file.directoryName}</td>
-							<td><c:set var="len" value="${fn:length(file.fileName)}" />
-								<c:set var="filetype"
-									value="${fn:toUpperCase(fn:substring(file.fileName, len-4, len))}" />
+							<td>
 								<c:choose>
 									<c:when
 										test="${(filetype eq '.JPG') or (filetype eq 'JPEG') or (filetype eq '.PNG') or (filetype eq '.GIF')}">
-										<img src='<c:url value="${file.fileId}"/>' width="100"
+										<img src='<c:url value="${fileId}"/>' width="100"
 											class="img-thumbnail">
 										<br>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="${file.fileId}"/>'>${file.fileName}</a>
+										<a href='<c:url value="${fileId}"/>'>${fileName}</a>
 										<br>
 									</c:otherwise>
 								</c:choose></td>
 							
-							<td><a href='<c:url value="/upload/delete/${file.fileId}"/>'
-								class="delete">삭제</a></td>
+<%-- 							<td><a href='<c:url value="/upload/delete/${fileId}"/>'
+								class="delete">삭제</a></td> --%>
 						</tr>
+						
 
 
-
+						<!-- 본문내용 -->
 						<p>${review.content}</p>
 					</div>
 		

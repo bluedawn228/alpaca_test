@@ -20,6 +20,11 @@ public interface ReviewController {
 
   ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
+
+  // @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
+  // ResponseEntity<byte[]> getImageFile(@PathVariable int fileId);
+
+
   //
   // ModelAndView replyform(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
