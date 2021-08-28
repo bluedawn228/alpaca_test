@@ -235,4 +235,44 @@ public class ReviewControllerImpl implements ReviewController {
   // }
   // return mv;
   // }
+
+  //
+  //
+  // @GetMapping("/fileview/{filename}") // 서버->브라우저 불러오기 매소드 / getRealPath("/uploadBoard/"); 폴더에
+  // // 클라이언트가 업로드한파일저장
+  // public void fileview(@PathVariable String filename, HttpServletRequest request,
+  // HttpServletResponse response) {
+  // String path = request.getServletContext().getRealPath("/uploadBoard/");
+  // File file = new File(path + filename);
+  //
+  // String sfilename = null;
+  // FileInputStream fis = null;
+  // try {
+  // // 한글 파일명 깨지지 않게 인코딩
+  // if (request.getHeader("User-Agent").indexOf("MSIE") > -1) { // ie
+  // sfilename = URLEncoder.encode(file.getName(), "utf-8");
+  // } else { // 나머지 브라우저
+  // sfilename = new String(file.getName().getBytes("utf-8"), "ISO-8859-1");
+  // }
+  // response.setCharacterEncoding("utf-8");
+  // response.setContentType("application/octet-stream;charset=utf-8");
+  // response.setHeader("Content-Disposition", "attachment; filename=\"" + sfilename + "\";");
+  // OutputStream out = response.getOutputStream();
+  // fis = new FileInputStream(file);
+  // FileCopyUtils.copy(fis, out);
+  // out.flush();
+  // } catch (Exception e) {
+  // e.printStackTrace();
+  // } finally {
+  // if (fis != null) {
+  // try {
+  // fis.close();
+  // } catch (Exception e) {
+  // }
+  // }
+  // }
+  // }
+  //
+  //
+
 }

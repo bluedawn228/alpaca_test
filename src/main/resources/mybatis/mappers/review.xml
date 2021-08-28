@@ -49,7 +49,20 @@
 	
 	<select id="selectReviewList" resultType="ReviewVO" parameterType="int">
 		<![CDATA[  
-		select m.name, r.*
+		select m.name, 
+		r.review_id as "reviewId",
+		r.r_img_id as "fileId",
+		r.email,
+		r.pos,
+		r.company,
+		r.title,
+		r.content,
+		r.comm_cnt as "commCnt",
+		r.like_cnt as "likeCnt",
+		r.view_cnt as "viewCnt",
+		r.regdate,
+		r.updatedate,
+		r.temp
   		  from ((select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc)) z, tbl_review r, tbl_member m 
    		 where r.temp=0 and z.num between #{startrow} and #{startrow}+10 and r.email=m.email and r.review_id=z.review_id
 		]]>
