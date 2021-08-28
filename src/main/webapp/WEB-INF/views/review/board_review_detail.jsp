@@ -198,10 +198,12 @@
 							</p>
 						</div>
 					</div>
-
-
-
-					<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea>
+					
+					<div class=content>
+					<p>${review.content}</p>
+					</div>
+		
+				<!-- 	<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea> -->
 
 					<p class="detail-row">
 						<img src="image/austria.jpg" alt="" class="reply-img"> <small>댓글:
