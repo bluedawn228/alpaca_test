@@ -66,8 +66,9 @@
 	
 	<select id="selectReview" resultType="ReviewVO" parameterType="int">
 		<![CDATA[
-		select * from tbl_review r, tbl_r_img i 
-		where review_id=#{reviewId} and r.r_img_id=i.r_img_id
+		select m.name, r.*
+    	from tbl_review r, tbl_member m 
+    	where review_id=#{reviewId} and r.email=m.email
 		]]>		
 	</select>
 	

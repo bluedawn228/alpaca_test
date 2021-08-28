@@ -23,17 +23,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
 
 <!-- custom styles -->
-<link rel="stylesheet" href="style/main.css">
-<link rel="stylesheet" href="style/board_review.css">
-<link rel="stylesheet" href="style/pop_ups.css">
-<link rel="stylesheet" href="style/interview_keyword.css">
-<link rel="stylesheet" href="style/board_detail.css">
-<link rel="stylesheet" href="style/board_best_answers.css">
-<link rel="stylesheet" href="style/mypage.css">
+<link rel="stylesheet" href="/style/main.css">
+<link rel="stylesheet" href="/style/board_review.css">
+<link rel="stylesheet" href="/style/pop_ups.css">
+<link rel="stylesheet" href="/style/interview_keyword.css">
+<link rel="stylesheet" href="/style/board_detail.css">
+<link rel="stylesheet" href="/style/board_best_answers.css">
+<link rel="stylesheet" href="/style/mypage.css">
 
 <!-- java script -->
-<script defer src="js/index.js"></script>
-<script defer src="js/pop_ups.js"></script>
+<script defer src="/js/index.js"></script>
+<script defer src="/js/pop_ups.js"></script>
 </head>
 <body>
 	<!-- 머리말 시작 -->
@@ -181,20 +181,20 @@
 
 
 				<div class="board-detail">
-					<p class="text item detail-row">${article.pos} | ${article.company} | ${article.title}</p>
+					<p class="text item detail-row">${review.pos} | ${review.company} | ${review.title}</p>
 
 					<div class="group-detail-row">
 						<div class="detail-row">
 							<img class="detail-img" src="image/sky.jpg" alt="">
 						</div>
 						<div class="detail-row">
-							<p class="text item">${article.name}</p>
-							<p class="text item">${article.regdate}</p>
+							<p class="text item">${review.name}</p>
+							<p class="text item">${review.regdate}</p>
 							<p class="text item">
-								조회수: <span>${article.viewCnt}</span>
+								조회수: <span>${review.viewCnt}</span>
 							</p>
 							<p class="text item">
-								좋아요: <span>${article.likeCnt}</span>
+								좋아요: <span>${review.likeCnt}</span>
 							</p>
 						</div>
 					</div>

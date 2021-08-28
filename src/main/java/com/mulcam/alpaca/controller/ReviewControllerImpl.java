@@ -126,13 +126,14 @@ public class ReviewControllerImpl implements ReviewController {
     ModelAndView mv = new ModelAndView();
     try {
       ReviewVO review = reviewService.getBoard(reviewId);
-      mv.addObject("article", review);
+      mv.addObject("review", review);
       mv.addObject("page", page);
-      mv.setViewName("/review/viewform");
+      mv.setViewName("/review/board_review_detail");
     } catch (Exception e) {
       e.printStackTrace();
       mv.addObject("err", "글 조회 실패");
       mv.setViewName("/review/err");
+      // 사진 보이기 확인
     }
     return mv;
   }

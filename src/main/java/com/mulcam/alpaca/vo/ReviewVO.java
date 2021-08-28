@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 @Component("review")
 public class ReviewVO { // db 컬럼명과 동일!, 컬럼보다 수 많은 건 괜찮음
+  private String name;
+
   private int reviewId;
   private int fileId;
   private String email;
@@ -19,8 +21,31 @@ public class ReviewVO { // db 컬럼명과 동일!, 컬럼보다 수 많은 건 
   private Date updatedate;
   private boolean temp;
 
-  private int pfImgId;
-  private String name;
+  // private int pfImgId;
+
+
+
+  public ReviewVO() {}
+
+  // public ReviewVO(String name, int reviewId, int fileId, String email, String pos, String
+  // company,
+  // String title, String content, int commCnt, int likeCnt, int viewCnt, Date regdate,
+  // Date updatedate, boolean temp) {
+  // name = this.name;
+  // reviewId = this.reviewId;
+  // fileId = this.fileId;
+  // email = this.email;
+  // pos = this.pos;
+  // company = this.company;
+  // title = this.title;
+  // content = this.content;
+  // commCnt = this.commCnt;
+  // likeCnt = this.likeCnt;
+  // viewCnt = this.viewCnt;
+  // regdate = this.regdate;
+  // updatedate = this.updatedate;
+  // temp = this.temp;
+  // }
 
 
 
@@ -129,13 +154,13 @@ public class ReviewVO { // db 컬럼명과 동일!, 컬럼보다 수 많은 건 
     this.temp = temp;
   }
 
-  public int getPfImgId() {
-    return pfImgId;
-  }
-
-  public void setPfImgId(int pfImgId) {
-    this.pfImgId = pfImgId;
-  }
+  // public int getPfImgId() {
+  // return pfImgId;
+  // }
+  //
+  // public void setPfImgId(int pfImgId) {
+  // this.pfImgId = pfImgId;
+  // }
 
   public String getName() {
     return name;
