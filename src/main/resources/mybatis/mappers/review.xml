@@ -75,11 +75,24 @@
 	</select>
 
 	
-	<!-- 공게 게시판 상세 -->
+	<!-- 공개 게시판 상세 -->
 	
 	<select id="selectReview" resultType="ReviewVO" parameterType="int">
 		<![CDATA[
-		select m.name, r.*
+		select m.name, 
+		r.review_id as "reviewId",
+		r.r_img_id as "fileId",
+		r.email,
+		r.pos,
+		r.company,
+		r.title,
+		r.content,
+		r.comm_cnt as "commCnt",
+		r.like_cnt as "likeCnt",
+		r.view_cnt as "viewCnt",
+		r.regdate,
+		r.updatedate,
+		r.temp
     	from tbl_review r, tbl_member m 
     	where review_id=#{reviewId} and r.email=m.email
 		]]>		
