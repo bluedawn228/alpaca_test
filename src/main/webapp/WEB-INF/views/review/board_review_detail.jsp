@@ -200,7 +200,34 @@
 					</div>
 					
 					<div class=content>
-					<p>${review.content}</p>
+
+						<tr>
+							<td><input type="checkbox" name="fileIds"
+								value="${file.fileId}">${file.fileId}</td>
+							<td>${file.directoryName}</td>
+							<td><c:set var="len" value="${fn:length(file.fileName)}" />
+								<c:set var="filetype"
+									value="${fn:toUpperCase(fn:substring(file.fileName, len-4, len))}" />
+								<c:choose>
+									<c:when
+										test="${(filetype eq '.JPG') or (filetype eq 'JPEG') or (filetype eq '.PNG') or (filetype eq '.GIF')}">
+										<img src='<c:url value="${file.fileId}"/>' width="100"
+											class="img-thumbnail">
+										<br>
+									</c:when>
+									<c:otherwise>
+										<a href='<c:url value="${file.fileId}"/>'>${file.fileName}</a>
+										<br>
+									</c:otherwise>
+								</c:choose></td>
+							
+							<td><a href='<c:url value="/upload/delete/${file.fileId}"/>'
+								class="delete">삭제</a></td>
+						</tr>
+
+
+
+						<p>${review.content}</p>
 					</div>
 		
 				<!-- 	<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea> -->
