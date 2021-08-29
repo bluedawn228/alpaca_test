@@ -153,6 +153,23 @@ public class ReviewControllerImpl implements ReviewController {
     }
   }
 
+  @Override
+  @GetMapping("/boarddelete")
+  public ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    ModelAndView mv = new ModelAndView();
+    try {
+      reviewService.removeBoard(reviewId);
+      mv.addObject("page", page);
+      mv.setViewName("redirect:/review/board_review");
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", e.getMessage());
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
+
 
   //
   // @Override
@@ -235,23 +252,6 @@ public class ReviewControllerImpl implements ReviewController {
   // return mv;
   // }
   //
-  // @Override
-  // @PostMapping("/boarddelete")
-  // public ModelAndView boardDelete(@RequestParam("board_num") int board_num,
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-  // @RequestParam("BOARD_PASS") String password) {
-  // ModelAndView mv = new ModelAndView();
-  // try {
-  // reviewService.removeBoard(board_num, password);
-  // mv.addObject("page", page);
-  // mv.setViewName("redirect:/review/boardlist");
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // mv.addObject("err", e.getMessage());
-  // mv.setViewName("/review/err");
-  // }
-  // return mv;
-  // }
 
   //
   //

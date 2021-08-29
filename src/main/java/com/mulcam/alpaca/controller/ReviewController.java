@@ -1,7 +1,6 @@
 package com.mulcam.alpaca.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,10 +25,10 @@ public interface ReviewController {
   ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
 
-  @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
   ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception;
 
-
+  ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page);
   //
   // ModelAndView replyform(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
@@ -45,7 +44,5 @@ public interface ReviewController {
   // ModelAndView deleteform(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);
   //
-  // ModelAndView boardDelete(@RequestParam("board_num") int board_num,
-  // @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-  // @RequestParam("BOARD_PASS") String password);
+
 }

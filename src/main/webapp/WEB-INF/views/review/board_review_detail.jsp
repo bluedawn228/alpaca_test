@@ -176,7 +176,12 @@
 						<button class="btn edit-btn">글쓰기</button>
 					</a>
 					<button class="btn edit-btn">수정</button>
-					<button class="btn edit-btn">삭제</button>
+					
+					<!-- 테스트중 -->
+					<a href="./boarddelete?reviewId=${review.reviewId}&page=${pageInfo.page}">
+						<button class="btn edit-btn">삭제</button>
+					</a>
+					
 					<button class="btn edit-btn">이전글</button>
 					<button class="btn edit-btn">다음글</button>
 					<a href="./board_review">

@@ -160,9 +160,20 @@
 					<button class="btn edit-btn">임시저장 글 보기</button>
 				
 				<!-- 키워드검색기능 -->
-				<form action="/review/board_review_key" method="post" name="board_review_key">
-					<input name="keyword" value="${keyword}">
-    				<input type="submit" value="검색">
+    			<form action="/review/board_review_key" method="post" class="board_review_key" name="board_review_key">
+                    <div class="detail-row">
+                        <div>
+                            <input type="text" name="keyword"
+						id="keyword" required="required" />
+                        </div>
+                    </div>
+                
+                    <div class="detail-row">
+                        <button type="submit" id="0" name="0" class="btn keyword">검색</button>
+                    </div>
+                </form>
+    				
+    				
 <!--                     <div class="detail-row">
                         <div>
                             <input type="text" name="key" id="key" required="required"/>
@@ -212,8 +223,8 @@
 							<table class="board-table">
 								<thead class="board-head">
 									<tr>
-										<th>번호</th>
-										<th>구분</th>
+										<th>포지션</th>
+										<th>회사명</th>
 										<th>제목</th>
 										<th>작성자</th>
 										<th>작성일</th>

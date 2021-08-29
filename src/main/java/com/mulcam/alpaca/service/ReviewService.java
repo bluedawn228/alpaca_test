@@ -19,12 +19,12 @@ public interface ReviewService {
 
   FileVO getPfImg(String email) throws Exception;
 
+  void removeBoard(int reviewId) throws Exception;
+
   //
   // void regReply(ReviewVO review) throws Exception;
   //
   // void modifyBoard(ReviewVO review) throws Exception;
-  //
-  // void removeBoard(int board_num, String password) throws Exception;
 
   // List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception;
 

@@ -183,6 +183,11 @@
 	</update>
 	
 	
-	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		<![CDATA[
+		delete from tbl_review where review_id=#{reviewId}
+		]]>
+	</delete>
 	
 </mapper>

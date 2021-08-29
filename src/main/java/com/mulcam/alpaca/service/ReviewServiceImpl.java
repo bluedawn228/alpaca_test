@@ -110,34 +110,25 @@ public class ReviewServiceImpl implements ReviewService {
   }
 
 
-
-  // @Override
-  // public void regReply(ReviewVO review) throws Exception {
-  // reviewDAO.updateBoardReSeq(review);
-  // int boardNum = reviewDAO.selectMaxBoardNum() + 1;
-  // review.setBOARD_NUM(boardNum);
-  // review.setBOARD_RE_LEV(review.getBOARD_RE_LEV() + 1);
-  // review.setBOARD_RE_SEQ(review.getBOARD_RE_SEQ() + 1);
-  // reviewDAO.insertBoard(review);
-  //
-  // }
-  //
-  // // String selectPassword(int board_num) throws Exception;
-  // // void updateBoard(Board board) throws Exception;
-  // @Override
-  // public void modifyBoard(ReviewVO review) throws Exception {
-  // String pass = reviewDAO.selectPassword(review.getBOARD_NUM());
-  // if (!pass.equals(review.getBOARD_PASS()))
-  // throw new Exception("비밀번호 틀림. 수정권한 없음");
-  // reviewDAO.updateBoard(review);
-  // }
-  //
-  // @Override
-  // public void removeBoard(int board_num, String password) throws Exception {
-  // String pass = reviewDAO.selectPassword(board_num);
-  // if (!pass.equals(password))
-  // // throw new Exception("삭제 권한 없음");
-  // // reviewDAO.deleteBoard(board_num);
+  @Override
+  public void removeBoard(int reviewId) throws Exception {
+    // String pass = reviewDAO.selectPassword(board_num);
+    // if (!pass.equals(password))
+    // throw new Exception("삭제 권한 없음");
+    reviewDAO.deleteReview(reviewId);
+  }
 
 }
 
+
+
+// @Override
+// public void regReply(ReviewVO review) throws Exception {
+// reviewDAO.updateBoardReSeq(review);
+// int boardNum = reviewDAO.selectMaxBoardNum() + 1;
+// review.setBOARD_NUM(boardNum);
+// review.setBOARD_RE_LEV(review.getBOARD_RE_LEV() + 1);
+// review.setBOARD_RE_SEQ(review.getBOARD_RE_SEQ() + 1);
+// reviewDAO.insertBoard(review);
+//
+// }
