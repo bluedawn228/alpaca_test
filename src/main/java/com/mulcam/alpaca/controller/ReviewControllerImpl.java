@@ -109,7 +109,7 @@ public class ReviewControllerImpl implements ReviewController {
   }
 
 
-
+  // 공개 게시판 상세
   @Override
   @GetMapping("/board_review_detail")
   public ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
@@ -153,6 +153,32 @@ public class ReviewControllerImpl implements ReviewController {
     }
   }
 
+  // 이전 게시판 상세
+  @Override
+  @GetMapping("/r_detail_pre")
+  public ModelAndView boardDetailPre(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    ModelAndView mv = new ModelAndView();
+    try {
+      ReviewVO review = reviewService.getBoardPre(reviewId);
+      FileVO file = reviewService.getFile(review.getFileId());
+      FileVO profile = reviewService.getPfImg(review.getEmail());
+
+      mv.addObject("profile", profile);
+      mv.addObject("file", file);
+      mv.addObject("review", review);
+      mv.addObject("page", page);
+      mv.setViewName("/review/board_review_detail");
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", "글 조회 실패");
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
+
+
+  // 게시글 삭제
   @Override
   @GetMapping("/boarddelete")
   public ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,

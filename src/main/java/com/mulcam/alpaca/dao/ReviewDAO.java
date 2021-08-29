@@ -43,16 +43,22 @@ public interface ReviewDAO {
       @Param("email") String email) throws Exception;
 
 
-  // 게시글 상세
+  // 공개 게시글 상세
+  void updateViewCount(int reviewId) throws Exception;
+
   ReviewVO selectReview(int reviewId) throws Exception;
+
+  // 이전 게시글 상세
+  void updateViewCountPre(int reviewId) throws Exception;
 
   ReviewVO selectReviewPre(int reviewId) throws Exception;
 
+  // 다음 게시글 상세
   ReviewVO selectReviewNext(int reviewId) throws Exception;
 
   void updateLikeCount(int reviewId) throws Exception;
 
-  void updateViewCount(int reviewId) throws Exception;
+
 
   // 게시글 상세 - 첨부파일
 

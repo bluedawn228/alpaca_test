@@ -110,6 +110,12 @@
 	
 	<!-- 공개 게시판 상세 -->
 	
+	<update id="updateViewCount" parameterType="int">
+		<![CDATA[
+		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}
+		]]>		
+	</update>
+	
 	<select id="selectReview" resultType="ReviewVO" parameterType="int">
 		<![CDATA[
 		select m.name, 
@@ -133,6 +139,12 @@
 	
 	
 		<!-- 이전글 / 공개 게시판 상세 -->
+		
+	<update id="updateViewCountPre" parameterType="int">
+		<![CDATA[
+		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}-1
+		]]>		
+	</update>
 	
 	<select id="selectReviewPre" resultType="ReviewVO" parameterType="int">
 		<![CDATA[
@@ -198,13 +210,7 @@
 		]]>
 	</delete> -->
 	
-	<!-- 게시글 수정 -->
-	
-	<update id="updateViewCount" parameterType="int">
-		<![CDATA[
-		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}
-		]]>		
-	</update>
+
 	
 	
 	<!-- 게시글 삭제 -->

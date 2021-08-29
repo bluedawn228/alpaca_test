@@ -15,6 +15,8 @@ public interface ReviewService {
 
   ReviewVO getBoard(int reviewId) throws Exception;
 
+  ReviewVO getBoardPre(int reviewId) throws Exception;
+
   FileVO getFile(int fileId) throws Exception;
 
   FileVO getPfImg(String email) throws Exception;
