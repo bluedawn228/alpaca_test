@@ -151,22 +151,29 @@
 			<div class="total-count">
 				<span>${pageInfo.listCount}</span>개의 글
 			</div>
+			
+			
 			<div class="edit-btn-box">
+				
+				<!-- 임시저장 글 목록 보기 -->
 				<a href="./write_tempreview">
 					<button class="btn edit-btn">임시저장 글 보기</button>
 				
-				<form action="/review/board_keyreview" method="post" class="board_keyreview" name="board_keyreview" id="board_keyreview">
-                    <div class="detail-row">
+				<!-- 키워드검색기능 -->
+				<form action="/review/board_review_key" method="post" name="board_review_key">
+					<input name="keyword" value="${keyword}">
+    				<input type="submit" value="검색">
+<!--                     <div class="detail-row">
                         <div>
                             <input type="text" name="key" id="key" required="required"/>
                         </div>
-                    </div>
-                    
+                    </div>                    
                     <div class="detail-row">
                         <button type="submit" id="10" name="10" class="btn_key">검색하기</button>
-                    </div>
+                    </div> -->
                 </form>
 				
+				<!-- 글쓰기 -->
 				<a href="./write_review">
 					<button class="btn edit-btn">글쓰기</button>
 				</a>

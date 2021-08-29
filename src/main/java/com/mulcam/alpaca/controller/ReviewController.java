@@ -19,7 +19,9 @@ public interface ReviewController {
   ModelAndView boardList(
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
 
-
+  ModelAndView boardKeyList(
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+      @RequestParam(defaultValue = "") String keyword);
 
   ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);

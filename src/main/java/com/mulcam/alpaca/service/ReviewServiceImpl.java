@@ -53,6 +53,29 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDAO.selectReviewList(startrow);
   }
 
+  @Override
+  public List<ReviewVO> getBoardKeyList(int page, PageInfo pageInfo, String keyword)
+      throws Exception {
+    int listCount = reviewDAO.selectReviewKeyCount(keyword); // 총 게시글 수
+    // 총 페이지 수 (올림처리 ex)게시글 95개, 페이지수 10개)
+    int maxPage = (int) Math.ceil((double) listCount / 10); // ceil:올림처리
+    // 현재 페이지에 보여줄 시작 페이지 수
+    int startPage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1; // 현재페이지 기준 계산법
+    // 현재 페이지에 보여줄 마지막 페이지 수
+    int endPage = startPage + 10 - 1;
+    if (endPage > maxPage) // 총 95페이지 인데 endPage 100페이지 일 수 없으므로
+      endPage = maxPage;
+    pageInfo.setEndPage(endPage); // 현재 페이지 기준(18)으로 시작페이지(11) 끝페이지(20)
+    pageInfo.setListCount(listCount);
+    pageInfo.setMaxPage(maxPage);
+    pageInfo.setPage(page);
+    pageInfo.setStartPage(startPage);
+    int startrow = (page - 1) * 10 + 1;
+
+    return reviewDAO.selectReviewKeyList(startrow, keyword);
+  }
+
+
   // @Override
   // public List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception {
   //

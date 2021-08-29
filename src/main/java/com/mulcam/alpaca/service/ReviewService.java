@@ -11,6 +11,8 @@ public interface ReviewService {
 
   List<ReviewVO> getBoardList(int page, PageInfo pageInfo) throws Exception;
 
+  List<ReviewVO> getBoardKeyList(int page, PageInfo pageInfo, String keyword) throws Exception;
+
   ReviewVO getBoard(int reviewId) throws Exception;
 
   FileVO getFile(int fileId) throws Exception;

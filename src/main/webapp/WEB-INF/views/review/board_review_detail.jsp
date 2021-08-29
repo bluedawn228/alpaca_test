@@ -172,12 +172,16 @@
 				<div class="line"></div>
 
 				<div class="board-edit">
-					<button class="btn edit-btn">글쓰기</button>
+					<a href="./write_review">
+						<button class="btn edit-btn">글쓰기</button>
+					</a>
 					<button class="btn edit-btn">수정</button>
 					<button class="btn edit-btn">삭제</button>
 					<button class="btn edit-btn">이전글</button>
 					<button class="btn edit-btn">다음글</button>
-					<button class="btn edit-btn">목록보기</button>
+					<a href="./board_review">
+						<button class="btn edit-btn">목록보기</button>
+					</a>
 				</div>
 
 

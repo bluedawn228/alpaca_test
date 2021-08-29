@@ -85,6 +85,31 @@ public class ReviewControllerImpl implements ReviewController {
     return mv;
   }
 
+
+  @Override
+  @RequestMapping(value = "board_review_key", method = {RequestMethod.GET, RequestMethod.POST})
+  public ModelAndView boardKeyList(
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+      @RequestParam(defaultValue = "") String keyword) {
+    PageInfo pageInfo = new PageInfo();
+    ModelAndView mv = new ModelAndView();
+    try {
+      List<ReviewVO> articleList = reviewService.getBoardKeyList(page, pageInfo, keyword); // pageInfo_출력해야해_만들어와
+      // List<Map<String, ReviewVO>> nameMapList = reviewService.getNameList(articleList);
+      // mv.addObject("nameMapList", nameMapList);
+      mv.addObject("pageInfo", pageInfo); // 하단 start end page값 넘길게
+      mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
+      mv.setViewName("/review/board_review_key"); // 화면에 이걸 띄워줘
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", e.getMessage());
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
+
+
+
   @Override
   @GetMapping("/board_review_detail")
   public ModelAndView boardDetail(@RequestParam("reviewId") int reviewId,
