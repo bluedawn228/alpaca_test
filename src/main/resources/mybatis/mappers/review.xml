@@ -39,7 +39,7 @@
 	
 	
 	
-	<!-- 게시판 리스트 -->
+	<!-- 공개 게시판 리스트 -->
 	
 	<select id="selectReviewCount" resultType="int">
 		<![CDATA[
@@ -67,6 +67,29 @@
    		 where r.temp=0 and z.num between #{startrow} and #{startrow}+10 and r.email=m.email and r.review_id=z.review_id
 		]]>
 	</select>
+	
+	<!-- 키워드 게시판 리스트 -->
+	<select id="selectReviewKeywordList" resultType="ReviewVO">
+		<![CDATA[  
+		select m.name, 
+		r.review_id as "reviewId",
+		r.r_img_id as "fileId",
+		r.email,
+		r.pos,
+		r.company,
+		r.title,
+		r.content,
+		r.comm_cnt as "commCnt",
+		r.like_cnt as "likeCnt",
+		r.view_cnt as "viewCnt",
+		r.regdate,
+		r.updatedate,
+		r.temp
+		from tbl_review r, tbl_member m, (select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc) z
+		where (r.pos like '%#{keyword}%' or r.company like '%#{keyword}%' or r.title like '%#{keyword}%' or r.content like '%#{keyword}%') and r.temp=0 and z.num between #{startrow} and #{startrow}+10 and r.email=m.email and r.review_id=z.review_id
+		]]>
+	</select>
+	
 	
 	<select id="selectNameByE" resultType="String" parameterType="String">
 		<![CDATA[  

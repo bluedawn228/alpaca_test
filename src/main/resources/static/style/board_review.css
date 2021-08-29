@@ -50,3 +50,8 @@ tr th:nth-child(3) {
 tr td:nth-child(3) {
     text-align: left;
 }
+
+.board_keyreview {
+	display: flex;
+	flex-direction: row;
+}

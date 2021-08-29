@@ -152,9 +152,22 @@
 				<span>${pageInfo.listCount}</span>개의 글
 			</div>
 			<div class="edit-btn-box">
-				<button class="btn edit-btn">임시저장 글 보기</button>
-				<button class="btn edit-btn">검색</button>
-				<a href="board_write.html">
+				<a href="./write_tempreview">
+					<button class="btn edit-btn">임시저장 글 보기</button>
+				
+				<form action="/review/board_keyreview" method="post" class="board_keyreview" name="board_keyreview" id="board_keyreview">
+                    <div class="detail-row">
+                        <div>
+                            <input type="text" name="key" id="key" required="required"/>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <button type="submit" id="10" name="10" class="btn_key">검색하기</button>
+                    </div>
+                </form>
+				
+				<a href="./write_review">
 					<button class="btn edit-btn">글쓰기</button>
 				</a>
 			</div>

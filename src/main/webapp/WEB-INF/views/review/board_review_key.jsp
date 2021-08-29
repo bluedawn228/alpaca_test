@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -29,9 +27,8 @@
 <link rel="stylesheet" href="/style/board_review.css">
 <link rel="stylesheet" href="/style/pop_ups.css">
 <link rel="stylesheet" href="/style/interview_keyword.css">
-<link rel="stylesheet" href="/style/board_detail.css">
-<link rel="stylesheet" href="/style/board_best_answers.css">
 <link rel="stylesheet" href="/style/mypage.css">
+<link rel="stylesheet" href="/style/board_detail.css">
 
 <!-- java script -->
 <script defer src="/js/index.js"></script>
@@ -149,13 +146,30 @@
 		<!-- 타이틀 더미 -->
 		<div class="dummy"></div>
 
-		<!-- 게시판 -->
+		<!-- 페이지 타이틀 -->
+		<div class="board-edit">
+			<div class="total-count">
+				<span>${pageInfo.listCount}</span>개의 글
+			</div>
+			<div class="edit-btn-box">
+				<button class="btn edit-btn">임시저장 글 보기</button>
+				<button class="btn edit-btn">검색</button>
+				<a href="board_write.html">
+					<button class="btn edit-btn">글쓰기</button>
+				</a>
+			</div>
+		</div>
+
+		<!-- 구분선 -->
+		<div class="line"></div>
+
+		<!-- 메인화면 게시판 -->
 		<div class="mypage">
 			<div class="board-container mypage-left">
 				<!-- 게시판 메뉴 -->
 				<div class="mypage-left-bottom">
 					<ul>
-						<a href="board_review.html"><li>면접후기게시판</li></a>
+						<a href="board_review.html"><li class="activated">면접후기게시판</li></a>
 						<a href="board_free.html"><li>자유게시판</li></a>
 						<a href="board_total.html"><li>전체질문</li></a>
 						<a href="board_recommend.html"><li>면접질문</li></a>
@@ -164,87 +178,82 @@
 				</div>
 			</div>
 
+			<!-- 게시판 -->
 			<div class="board mypage-right">
 				<!-- 페이지 타이틀 -->
-				<h1 class="page-title-left">자유게시글 상세보기</h1>
+				<h1 class="page-title-left">면접후기게시판</h1>
 
 				<!-- 구분선 -->
 				<div class="line"></div>
 
-				<div class="board-edit">
-					<button class="btn edit-btn">글쓰기</button>
-					<button class="btn edit-btn">수정</button>
-					<button class="btn edit-btn">삭제</button>
-					<button class="btn edit-btn">이전글</button>
-					<button class="btn edit-btn">다음글</button>
-					<button class="btn edit-btn">목록보기</button>
-				</div>
+				<c:choose>
+					<c:when test="${articleList!=null && pageInfo.listCount>0 }">
+						<section id="listForm">
+							<table class="board-table">
+								<thead class="board-head">
+									<tr>
+										<th>번호</th>
+										<th>구분</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일</th>
+										<th>조회</th>
+										<th>좋아요</th>
+									</tr>
+								</thead>
 
+								<c:forEach var="article" items="${articleList}">
+									<tbody class="board-body">
+										<tr>
+											<td><a href="#">${article.pos}</a></td>
+											<td><a href="#">${article.company}</a></td>
+											<td><a
+												href="./board_review_detail?reviewId=${article.reviewId}&page=${pageInfo.page}"><span></span>${article.title}</a></td>
+											<td><a href="#">${article.name}</a></td>
+											<!--  name -->
+											<td><a href="#">${article.regdate}</a></td>
+											<td><a href="#">${article.viewCnt}</a></td>
+											<td><a href="#">${article.likeCnt}</a></td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
+						</section>
 
-
-				<div class="board-detail">
-					<p class="text item detail-row">${review.pos} | ${review.company} | ${review.title}</p>
-
-					<div class="group-detail-row">
-						<div class="detail-row">
-							<!-- <img class="detail-img" src="image/sky.jpg" alt=""> -->
-							<img src='<c:url value="review/img/${profile.fileId}"/>' width="100"
-											class="img-thumbnail"> <%-- "review/img/${profile.fileId}" --%>
-						</div>
-						<div class="detail-row">
-							<p class="text item">${review.name}</p>
-							<p class="text item">${review.regdate}</p>
-							<p class="text item">
-								조회수: <span>${review.viewCnt}</span>
-							</p>
-							<p class="text item">
-								좋아요: <span>${review.likeCnt}</span>
-							</p>
-						</div>
-					</div>
-
-					<div class=content>
-
-						<!-- 첨부파일 -->
- 						<tr>
-							<td><c:set var="len" value="${fn:length(file.fileName)}" />
-								<c:set var="filetype"
-									value="${fn:toUpperCase(fn:substring(file.fileName, len-4, len))}" />
+						<section id="pageList">
+							<div class="board-control">
 								<c:choose>
-									<c:when
-										test="${(filetype eq '.JPG') or (filetype eq 'JPEG') or (filetype eq '.PNG') or (filetype eq '.GIF')}">
-										<img src='<c:url value="review//img/${file.fileId}"/>' width="100"
-											class="img-thumbnail">
-										<br>
-									</c:when>
+									<c:when test="${pageInfo.page<=1}">
+					[이전]&nbsp; 
+				</c:when>
 									<c:otherwise>
-										<a href='<c:url value="review//pds/${file.fileId}"/>'>${file.fileName}</a>
-										<br>
+										<a href="boardlist?page=${pageInfo.page-1}">[이전]</a>&nbsp;
+				</c:otherwise>
+								</c:choose>
+								<c:forEach var="i" begin="${pageInfo.startPage }"
+									end="${pageInfo.endPage }">
+									<c:choose>
+										<c:when test="${pageInfo.page==i }">[${i}]</c:when>
+										<c:otherwise>
+											<a href="boardlist?page=${i}">[${i}]</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${pageInfo.page>=pageInfo.maxPage }">
+                [다음]
+                </c:when>
+									<c:otherwise>
+										<a href="boardlist?page=${pageInfo.page+1}">[다음]</a>
 									</c:otherwise>
-								</c:choose></td>
-						</tr> 
-
-
-
-
-						<!-- 본문내용 -->
-						<p>${review.content}</p>
-					</div>
-
-					<!-- 	<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea> -->
-
-					<p class="detail-row">
-						<img src="image/austria.jpg" alt="" class="reply-img"> <small>댓글:
-						</small> <small>id: </small> <small>댓글: </small> <small>댓글: </small> <small>댓글:
-						</small>
-						<button class="btn">삭제하기</button>
-					</p>
-
-					<div class="detail-row">
-						<input type="text" class="comment">
-						<button class="btn">등록하기</button>
-					</div>
-				</div>
+								</c:choose>
+							</div>
+						</section>
+					</c:when>
+					<c:otherwise>
+						<section id="emptyArea">등록된 글이 없습니다.</section>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</main>
