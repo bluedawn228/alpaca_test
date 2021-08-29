@@ -138,7 +138,7 @@
 	</select>
 	
 	
-		<!-- 이전글 / 공개 게시판 상세 -->
+	<!-- 이전글 / 공개 게시판 상세 -->
 		
 	<update id="updateViewCountPre" parameterType="int">
 		<![CDATA[
@@ -166,6 +166,41 @@
     	where review_id=#{reviewId}-1 and r.email=m.email
 		]]>		
 	</select>
+	
+	
+	<!-- 다음글 / 공개 게시판 상세 -->
+		
+	<update id="updateViewCountNext" parameterType="int">
+		<![CDATA[
+		update tbl_review set view_cnt=view_cnt+1 where review_id=#{reviewId}+1
+		]]>		
+	</update>
+	
+	<select id="selectReviewNext" resultType="ReviewVO" parameterType="int">
+		<![CDATA[
+		select m.name, 
+		r.review_id as "reviewId",
+		r.r_img_id as "fileId",
+		r.email,
+		r.pos,
+		r.company,
+		r.title,
+		r.content,
+		r.comm_cnt as "commCnt",
+		r.like_cnt as "likeCnt",
+		r.view_cnt as "viewCnt",
+		r.regdate,
+		r.updatedate,
+		r.temp
+    	from tbl_review r, tbl_member m 
+    	where review_id=#{reviewId}+1 and r.email=m.email
+		]]>		
+	</select>
+	
+	
+	
+	
+	
 	
 	<!-- 게시판 상세 첨부파일 -->
 	

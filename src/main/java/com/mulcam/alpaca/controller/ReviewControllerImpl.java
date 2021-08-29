@@ -74,7 +74,7 @@ public class ReviewControllerImpl implements ReviewController {
       List<ReviewVO> articleList = reviewService.getBoardList(page, pageInfo); // pageInfo_출력해야해_만들어와
       // List<Map<String, ReviewVO>> nameMapList = reviewService.getNameList(articleList);
       // mv.addObject("nameMapList", nameMapList);
-      mv.addObject("pageInfo", pageInfo); // 하단 start end page값 넘길게
+      mv.addObject("pageInfo", pageInfo); // 하단 page객체 넘길게
       mv.addObject("articleList", articleList); // 게시글10개 리스트 넘길게
       mv.setViewName("/review/board_review"); // 화면에 이걸 띄워줘
     } catch (Exception e) {
@@ -161,6 +161,31 @@ public class ReviewControllerImpl implements ReviewController {
     ModelAndView mv = new ModelAndView();
     try {
       ReviewVO review = reviewService.getBoardPre(reviewId);
+      FileVO file = reviewService.getFile(review.getFileId());
+      FileVO profile = reviewService.getPfImg(review.getEmail());
+
+      mv.addObject("profile", profile);
+      mv.addObject("file", file);
+      mv.addObject("review", review);
+      mv.addObject("page", page);
+      mv.setViewName("/review/board_review_detail");
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", "글 조회 실패");
+      mv.setViewName("/review/err");
+    }
+    return mv;
+  }
+
+
+  // 다음 게시판 상세
+  @Override
+  @GetMapping("/r_detail_next")
+  public ModelAndView boardDetailNext(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    ModelAndView mv = new ModelAndView();
+    try {
+      ReviewVO review = reviewService.getBoardNext(reviewId);
       FileVO file = reviewService.getFile(review.getFileId());
       FileVO profile = reviewService.getPfImg(review.getEmail());
 

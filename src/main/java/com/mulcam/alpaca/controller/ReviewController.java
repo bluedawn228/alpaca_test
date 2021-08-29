@@ -28,6 +28,9 @@ public interface ReviewController {
   ModelAndView boardDetailPre(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
 
+  ModelAndView boardDetailNext(@RequestParam("reviewId") int reviewId,
+      @RequestParam(value = "page", required = false, defaultValue = "1") int page);
+
   ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception;
 
   ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,

@@ -54,9 +54,9 @@ public interface ReviewDAO {
   ReviewVO selectReviewPre(int reviewId) throws Exception;
 
   // 다음 게시글 상세
-  ReviewVO selectReviewNext(int reviewId) throws Exception;
+  void updateViewCountNext(int reviewId) throws Exception;
 
-  void updateLikeCount(int reviewId) throws Exception;
+  ReviewVO selectReviewNext(int reviewId) throws Exception;
 
 
 
@@ -74,7 +74,7 @@ public interface ReviewDAO {
 
   void updateRImg(FileVO rImg) throws Exception;
 
-
+  void updateLikeCount(int reviewId) throws Exception;
 
   // 게시글 삭제
   void deleteReview(int reviewId) throws Exception;

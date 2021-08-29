@@ -189,7 +189,7 @@
 						<button class="btn edit-btn">다음글</button>
 					</a>
 
-					<a href="./board_review">
+					<a href="./board_review?page=${pageInfo.page}">
 						<button class="btn edit-btn">목록보기</button>
 					</a>
 				</div>

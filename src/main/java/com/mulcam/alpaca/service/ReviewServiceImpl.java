@@ -106,6 +106,12 @@ public class ReviewServiceImpl implements ReviewService {
   }
 
   @Override
+  public ReviewVO getBoardNext(int reviewId) throws Exception {
+    reviewDAO.updateViewCountNext(reviewId); // 조회수 증가
+    return reviewDAO.selectReviewNext(reviewId);
+  }
+
+  @Override
   public FileVO getFile(int fileId) throws Exception {
     return reviewDAO.getFile(fileId);
   }
