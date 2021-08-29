@@ -177,13 +177,18 @@
 					</a>
 					<button class="btn edit-btn">수정</button>
 					
-					<!-- 테스트중 -->
 					<a href="./boarddelete?reviewId=${review.reviewId}&page=${pageInfo.page}">
 						<button class="btn edit-btn">삭제</button>
 					</a>
 					
-					<button class="btn edit-btn">이전글</button>
-					<button class="btn edit-btn">다음글</button>
+					<a href="./r_detail_pre?reviewId=${review.reviewId}&page=${pageInfo.page}">
+						<button class="btn edit-btn">이전글</button>
+					</a>
+					
+					<a href="./r_detail_next?reviewId=${review.reviewId}&page=${pageInfo.page}">
+						<button class="btn edit-btn">다음글</button>
+					</a>
+
 					<a href="./board_review">
 						<button class="btn edit-btn">목록보기</button>
 					</a>
