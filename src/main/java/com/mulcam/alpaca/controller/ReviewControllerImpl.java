@@ -1,7 +1,10 @@
 package com.mulcam.alpaca.controller;
 
 
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -134,25 +137,6 @@ public class ReviewControllerImpl implements ReviewController {
   }
 
 
-  @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
-  public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception { // @PathVariable_url값을_변수로_담는다
-    FileVO file = reviewService.getFile(fileId);
-    System.out.println("a");
-    final HttpHeaders headers = new HttpHeaders(); // 상수화
-    System.out.println("b");
-    if (file != null) {
-      String[] mtypes = file.getFileContentType().split("/");
-      headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
-      headers.setContentDispositionFormData("attachment", file.getFileName());
-      headers.setContentLength(file.getFileSize());
-      System.out.println("c");
-      return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
-    } else {
-      System.out.println("d");
-      return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
-    }
-  }
-
   // 이전 게시판 상세
   @Override
   @GetMapping("/r_detail_pre")
@@ -201,6 +185,47 @@ public class ReviewControllerImpl implements ReviewController {
     }
     return mv;
   }
+
+  // 게시판 상세 > 첨부파일
+  @GetMapping(value = {"/img/{fileId}", "/pds/{fileId}"})
+  public ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception { // @PathVariable_url값을_변수로_담는다
+    FileVO file = reviewService.getFile(fileId);
+    System.out.println("a");
+    final HttpHeaders headers = new HttpHeaders(); // 상수화
+    System.out.println("b");
+    if (file != null) {
+      String[] mtypes = file.getFileContentType().split("/");
+      headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
+      headers.setContentDispositionFormData("attachment", file.getFileName());
+      headers.setContentLength(file.getFileSize());
+      System.out.println("c");
+      return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
+    } else {
+      System.out.println("d");
+      return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  // 게시판 상세 > 좋아요
+
+  @Override
+  @GetMapping("/reviewLikeCall")
+  public void reviewLikeCall(@RequestParam(value = "reviewId", required = true) String reviewId,
+      HttpServletResponse response) throws Exception {
+
+    reviewService.updateLikeCount(reviewId);
+
+    int likeCnt = reviewService.getLikeCount(reviewId);
+
+    PrintWriter out = response.getWriter();
+    DecimalFormat decFormat = new DecimalFormat("###,###");
+    String likeCntStr = decFormat.format(likeCnt);
+
+    out.append(likeCntStr);
+    out.flush();
+    System.out.println("DiaryRcmdCall start" + reviewId);
+  }
+
 
 
   // 게시글 삭제

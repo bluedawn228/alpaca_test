@@ -202,7 +202,7 @@
 	
 	
 	
-	<!-- 게시판 상세 첨부파일 -->
+	<!-- 게시판 상세 > 첨부파일 -->
 	
 	<select id="getFile" parameterType="int" resultType="fileVO">
 	<![CDATA[
@@ -221,7 +221,7 @@
 	</select>
 	
 	
-	<!-- 게시판 프로필 첨부파일 -->
+	<!-- 게시판 상세 > 프로필 첨부파일 -->
 	
 	<select id="selectPfImg" resultType="fileVO" parameterType="String">
 		<![CDATA[
@@ -244,6 +244,23 @@
 		delete from upload_file where file_id=#{fileId}
 		]]>
 	</delete> -->
+	
+	
+	<!-- 게시글 상세 > 좋아요 -->
+	
+	<select id="selectLikeCount" parameterType="String" resultType="int">
+		<![CDATA[
+		select nvl(like_cnt,0) from tbl_review where review_id=#{reviewId}
+		]]>		
+	</select>
+
+	<update id="updateLikeCount" parameterType="String">
+		<![CDATA[
+		update tbl_review set like_cnt=nvl(like_cnt,0)+1 where review_id=#{reviewId}
+		]]>		
+	</update>
+	
+
 	
 
 	

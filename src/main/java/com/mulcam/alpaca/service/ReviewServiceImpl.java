@@ -121,6 +121,17 @@ public class ReviewServiceImpl implements ReviewService {
     return reviewDAO.selectPfImg(email);
   }
 
+  @Override
+  public int getLikeCount(String reviewId) throws Exception {
+    return reviewDAO.selectLikeCount(reviewId);
+  }
+
+  @Override
+  public void updateLikeCount(String reviewId) throws Exception {
+    reviewDAO.updateLikeCount(reviewId);
+  }
+
+
 
   @Override
   public void removeBoard(int reviewId) throws Exception {

@@ -68,6 +68,12 @@ public interface ReviewDAO {
 
   FileVO selectPfImg(String email);
 
+  // 게시글 상세 - 좋아요
+
+  int selectLikeCount(String reviewId);
+
+  void updateLikeCount(String reviewId);
+
 
   // 게시글 수정
   void updateReview(ReviewVO review) throws Exception;

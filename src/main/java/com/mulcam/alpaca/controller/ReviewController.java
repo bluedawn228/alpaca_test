@@ -1,5 +1,6 @@
 package com.mulcam.alpaca.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,9 @@ public interface ReviewController {
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
 
   ResponseEntity<byte[]> getImageFile(@PathVariable int fileId) throws Exception;
+
+  void reviewLikeCall(@RequestParam(value = "reviewId", required = true) String reviewId,
+      HttpServletResponse response) throws Exception;
 
   ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);

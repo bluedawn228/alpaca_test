@@ -23,6 +23,11 @@ public interface ReviewService {
 
   FileVO getPfImg(String email) throws Exception;
 
+  int getLikeCount(String reviewId) throws Exception;
+
+  void updateLikeCount(String reviewId) throws Exception;
+
+
   void removeBoard(int reviewId) throws Exception;
 
   //

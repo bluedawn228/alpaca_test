@@ -224,7 +224,7 @@
 								<thead class="board-head">
 									<tr>
 										<th>포지션</th>
-										<th>회사명</th>
+										<th>회사</th>
 										<th>제목</th>
 										<th>작성자</th>
 										<th>작성일</th>
