@@ -223,7 +223,7 @@ public class ReviewControllerImpl implements ReviewController {
 
     out.append(likeCntStr);
     out.flush();
-    System.out.println("DiaryRcmdCall start" + reviewId);
+    System.out.println("reviewLikeCall reviewId : " + reviewId);
   }
 
 
