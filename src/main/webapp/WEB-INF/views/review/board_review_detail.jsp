@@ -24,7 +24,9 @@
 	crossorigin="anonymous">
 
 <!-- jquery-->
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 
 
 <!-- bootstrap
@@ -40,36 +42,33 @@
 <link rel="stylesheet" href="/style/mypage.css">
 
 <!-- 좋아요 관련 css javascript -->
-    <style>
-        .rcmdbtn {
-	    font-size: 24px;
-	    font-weight: 600;
-		}
-    </style>
-    
-    <script>        
-        function likeCnt(reviewId) {
-            //alert(articleId);
-            $.ajax({
-                  type: "GET",
-                  url: "./review/reviewLikeCall", //요청 URL 
-                  data: { idx : reviewId  }, //요청과 함께 서버에 보내는 string 또는 json
-                  dataType :"text", // 서버에서 내려온 data 형식. ( default : xml, json, script, text, html )
-                  beforeSend: function() {}, // 전송 전 작업
-                  success: function(data, textStatus) { // 요청에 성공하면 함수 실행 data는 응답 데이터가 들어간다
-                      //var likeCnt = $(likeCnt);
-                      //alert(data);
-                      if (textStatus == 'success') {
-                          $("#likeCnt").text(data);
-                      };
-                  },
-                  complete: function(data) {}, // 응답이 종료되면 실행, 성공여부와 상관없이 ajax 완료후 작업 
-                  error: function(response, textStatus) { // 에러가 났을 경우의 작업
-                     alert("오류가 발생했습니다.");
-                  }
-              });
-              return false; // 페이지 리로딩을 막는다. 
-        };
+<style>
+.rcmdbtn {
+	font-size: 24px;
+	font-weight: 600;
+}
+</style>
+
+<script>        
+    function likeCnt(reviewId) {
+        //alert(articleId);
+        $.ajax({
+              type: "GET",
+              url: "./reviewLikeCall", //요청 URL 
+              data: { reviewId : reviewId  }, //요청과 함께 서버에 보내는 string 또는 json
+              dataType :"text", // 서버에서 내려온 data 형식. ( default : xml, json, script, text, html )
+              success: function(data, textStatus) { // 요청에 성공하면 함수 실행 data는 응답 데이터가 들어간다
+                  alert("aa");
+                    if (textStatus == 'success') {
+                      $("#likeCnt").text(data);
+                  };
+              },
+              error: function(response, textStatus) { // 에러가 났을 경우의 작업
+                 alert("오류가 발생했습니다.");
+              }
+          });
+          return false; // 페이지 리로딩을 막는다. 
+    };
     </script>
 
 
@@ -254,16 +253,17 @@
 							<p class="text item">
 								조회수: <span>${review.viewCnt}</span>
 							</p>
-							
+
 							<%-- 							<p class="text item">
 								좋아요: <span>${review.likeCnt}</span>
 							</p> --%>
-							
-<!-- 좋아요 테스트 -->
+
+							<!-- 좋아요 테스트 -->
 
 							<article class="board-view text-center">
 								<div class="btn-group">
-									<button type="button" id="" name="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+									<button type="button" id="" name="" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
 										onclick="javascript:likeCnt(${review.reviewId});">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-suit-heart"
@@ -295,12 +295,12 @@
 								<c:choose>
 									<c:when
 										test="${(filetype eq '.JPG') or (filetype eq 'JPEG') or (filetype eq '.PNG') or (filetype eq '.GIF')}">
-										<img src='<c:url value="review//img/${file.fileId}"/>'
+										<img src='<c:url value="../review/img/${file.fileId}"/>'
 											width="100" class="img-thumbnail">
 										<br>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="review//pds/${file.fileId}"/>'>${file.fileName}</a>
+										<a href='<c:url value="/review/pds/${file.fileId}"/>'>${file.fileName}</a>
 										<br>
 									</c:otherwise>
 								</c:choose></td>
