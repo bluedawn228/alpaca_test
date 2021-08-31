@@ -71,9 +71,9 @@
 	
 	<!-- 키워드 게시판 리스트 -->
 	
-	<select id="selectReviewKeyCount" resultType="int" parameterType="String">
+	<select id="selectReviewKeyCount" resultType="int">
 		<![CDATA[
-		select count(*) from tbl_review where  temp=0 and (pos like '%#{keyword}%' or company like '%#{keyword}%' or title like '%#{keyword}%' or content like '%#{keyword}%')
+		select count(*) from tbl_review where temp=0 and (pos like '%'||#{keyword}||'%' or company like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%')
 		]]>		
 	</select>
 	
@@ -94,7 +94,7 @@
 		r.updatedate,
 		r.temp
 		from tbl_review r, tbl_member m, (select row_number() over (order by review_id desc) num, A.* from tbl_review A order by review_id desc) z
-		where (r.pos like '%#{keyword}%' or r.company like '%#{keyword}%' or r.title like '%#{keyword}%' or r.content like '%#{keyword}%') and r.temp=0 and z.num between #{startrow} and #{startrow}+10 and r.email=m.email and r.review_id=z.review_id
+		where (r.pos like '%'||#{keyword}||'%' or r.company like '%'||#{keyword}||'%' or r.title like '%'||#{keyword}||'%' or r.content like '%'||#{keyword}||'%') and r.temp=0 and z.num between ${startrow} and ${startrow}+10 and r.email=m.email and r.review_id=z.review_id
 		]]>
 	</select>
 	
