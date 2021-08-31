@@ -283,7 +283,7 @@
 								좋아요: <span>${review.likeCnt}</span>
 							</p> --%>
 
-							<!-- 좋아요 테스트 -->
+							<!-- 좋아요-->
 
 							<article class="board-view text-center">
 								<div class="btn-group">
@@ -353,12 +353,106 @@
 						<input type="text" class="comment">
 						<button class="btn">등록하기</button>
 					</div> -->
+		
+		
 					
-					
+<!-- 댓글 test -->
 					<article>
+							<!--  댓글 반복문 시작  -->
+ 							<c:forEach items="${commList}" var="commList" varStatus="status">
+								<div class="card">
+									<div class="card-header">${commList.comId} 님</div>
+									<div class="card-body">
+										<blockquote class="blockquote mb-0">
+											<p>${commList.content}</p>
+											<footer class="blockquote-footer">
+												<cite title="Source Title"><fmt:formatDate
+														value="${commList.regdate}" pattern="yyyy.MM.dd hh:mm:ss" /></cite>
+
+											</footer>
+										</blockquote>
+									</div>
+								</div>
+								<br>
+							</c:forEach>
+							
+							
+<!-- 댓글테스트 -->
+							
+							<div class="comments-container">
+		<h2>댓글</h2>
+		
+		
+
+		<ul id="comments-list" class="comments-list">
+			<li>
+				<div class="comment-main-level">
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							<div class="comment-head-left">
+								<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+								<span>hace 20 minutos</span>
+							</div>
+							<div class="comment-head-right">
+								<!-- if문:작성자만 보이기 -->
+								<button>수정</button>
+								<button>삭제</button>
+								<!-- if문 끝 -->
+								<button>답글달기</button>
+							</div>
+						</div>
+						<div class="comment-content">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+						</div>
+					</div>
+				</div>
+				<!-- Respuestas de los comentarios -->
+				<ul class="comments-list reply-list">
+					<li>
+						<!-- Avatar -->
+						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+						<!-- Contenedor del Comentario -->
+						<div class="comment-box">
+							<div class="comment-head">
+								<div class="comment-head-left">
+									<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+									<span>hace 20 minutos</span>
+								</div>
+								<div class="comment-head-right">
+									<!-- if문:작성자만 보이기 -->
+									<button>수정</button>
+									<button>삭제</button>
+									<!-- if문 끝 -->
+									<button>답글달기</button>
+								</div>
+							</div>
+							<div class="comment-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<!--  댓글 반복문 끝  -->
+					
+					
 							<!--  댓글 입력 창 시작 -->
 							<form name="comment-form" id="comment-form"
-								action="./addComm" method="post">
+								action="/review/addComment" method="post">
 								<div class="card">
 									<div class="card-header">
 
@@ -394,7 +488,7 @@
 											</div>
 											<div style="display: inline-block;">
 
-												<button class="btn btn-primary" type="button" id="comments-btn" style="height: 100px; float: left;" onclick="addComment(${view.viewId})">댓글 달기</button>
+												<button class="btn btn-primary" type="button" id="comment-btn" style="height: 100px; float: left;" onclick="addComment(${view.viewId})">댓글 달기</button>
 
 											</div>
 										</div>
@@ -404,24 +498,7 @@
 							<br>
 							<!--  댓글 입력 창 끝 -->
 							<div style="clear: both"></div>
-							<!--  댓글 반복문 시작  -->
-							<c:forEach items="${dcList}" var="cList" varStatus="status">
-								<div class="card">
-									<div class="card-header">${cList.commenterId} 님</div>
-									<div class="card-body">
-										<blockquote class="blockquote mb-0">
-											<p>${cList.comments}</p>
-											<footer class="blockquote-footer">
-												<cite title="Source Title"><fmt:formatDate
-														value="${cList.postDate}" pattern="yyyy.MM.dd hh:mm:ss" /></cite>
-
-											</footer>
-										</blockquote>
-									</div>
-								</div>
-								<br>
-							</c:forEach>
-							<!--  댓글 반복문 끝  -->
+							
 						</article>
 					
 					
