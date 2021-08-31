@@ -71,7 +71,7 @@
 	
 	<!-- 키워드 게시판 리스트 -->
 	
-	<select id="selectReviewKeyCount" resultType="int">
+	<select id="selectReviewKeyCount" parameterType="String" resultType="int">
 		<![CDATA[
 		select count(*) from tbl_review where temp=0 and (pos like '%'||#{keyword}||'%' or company like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%')
 		]]>		

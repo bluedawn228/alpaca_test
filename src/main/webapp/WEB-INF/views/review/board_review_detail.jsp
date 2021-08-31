@@ -69,7 +69,31 @@
           });
           return false; // 페이지 리로딩을 막는다. 
     };
-    </script>
+    
+  //댓글달기
+
+    function addComment(viewId) {
+    	 	alert("왔다");
+    		if( $("#comment").val() == null || $("#comment").val() == "") {
+          		alert("댓글을 입력하세요");	
+          		return false;
+          	  } 
+
+/*     		  <c:choose>
+    	          <c:when test="${userInfo.id eq null }">
+    	          		alert("댓글을 다시려면 로그인이 필요합니다.");	 
+    	          </c:when>
+    	          <c:otherwise> */
+    	          	$("#comment-form").submit();	        		
+/*     	          </c:otherwise>
+          	  </c:choose> */
+
+    }
+ 
+</script>
+
+
+
 
 
 
@@ -310,13 +334,15 @@
 
 
 
-						<!-- 본문내용 -->
+					<!-- 본문내용 -->
 						<p>${review.content}</p>
 					</div>
+					<!-- 본문내용 끝 -->
+					
 
 					<!-- 	<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea> -->
 
-					<p class="detail-row">
+<!-- 					<p class="detail-row">
 						<img src="image/austria.jpg" alt="" class="reply-img"> <small>댓글:
 						</small> <small>id: </small> <small>댓글: </small> <small>댓글: </small> <small>댓글:
 						</small>
@@ -326,7 +352,80 @@
 					<div class="detail-row">
 						<input type="text" class="comment">
 						<button class="btn">등록하기</button>
-					</div>
+					</div> -->
+					
+					
+					<article>
+							<!--  댓글 입력 창 시작 -->
+							<form name="comment-form" id="comment-form"
+								action="./addComm" method="post">
+								<div class="card">
+									<div class="card-header">
+
+										<!-- 댓글 로그인 시작 -->
+<%-- 										<c:choose>
+											<c:when test="${userInfo.id eq null }">
+												<a class="btn btn-sm btn-info"
+													href="./auth-signin?board=diary-detail&bidx=${diary.diaryId}">로그인</a>
+												<span style="width: 10px"></span>
+											</c:when>
+
+											<c:otherwise>
+												<p>${userInfo.name}(${userInfo.id})님</p>
+												<span style="width: 10px"></span>
+												<input type="hidden" name="diaryId" value="${diary.diaryId}">
+												<input type="hidden" name="commenterId"
+													value="${userInfo.id}">
+
+											</c:otherwise>
+										</c:choose> --%>
+										<!--  댓글 로그인 끝  -->
+									</div>
+									<div style="width: 100%; text-align: center;">
+										<div
+											style="display: inline-block; width: 50%; text-align: center;">
+
+											<div style="display: inline-block; width: 50%;">
+
+												<textarea class="form-control" name="comment" id="comment"
+													placeholder="댓글을 입력하세요" id="floatingTextarea2"
+													style="height: 100px; width: 300px; float: right"></textarea>
+
+											</div>
+											<div style="display: inline-block;">
+
+												<button class="btn btn-primary" type="button" id="comments-btn" style="height: 100px; float: left;" onclick="addComment(${view.viewId})">댓글 달기</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<br>
+							<!--  댓글 입력 창 끝 -->
+							<div style="clear: both"></div>
+							<!--  댓글 반복문 시작  -->
+							<c:forEach items="${dcList}" var="cList" varStatus="status">
+								<div class="card">
+									<div class="card-header">${cList.commenterId} 님</div>
+									<div class="card-body">
+										<blockquote class="blockquote mb-0">
+											<p>${cList.comments}</p>
+											<footer class="blockquote-footer">
+												<cite title="Source Title"><fmt:formatDate
+														value="${cList.postDate}" pattern="yyyy.MM.dd hh:mm:ss" /></cite>
+
+											</footer>
+										</blockquote>
+									</div>
+								</div>
+								<br>
+							</c:forEach>
+							<!--  댓글 반복문 끝  -->
+						</article>
+					
+					
+					
 				</div>
 			</div>
 		</div>
