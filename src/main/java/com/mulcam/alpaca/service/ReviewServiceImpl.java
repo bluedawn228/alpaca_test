@@ -56,6 +56,7 @@ public class ReviewServiceImpl implements ReviewService {
   @Override
   public List<ReviewVO> getBoardKeyList(int page, PageInfo pageInfo, String keyword)
       throws Exception {
+    System.out.println(keyword);
     int listCount = reviewDAO.selectReviewKeyCount(keyword); // 총 게시글 수
     // 총 페이지 수 (올림처리 ex)게시글 95개, 페이지수 10개)
     int maxPage = (int) Math.ceil((double) listCount / 10); // ceil:올림처리
@@ -71,7 +72,7 @@ public class ReviewServiceImpl implements ReviewService {
     pageInfo.setPage(page);
     pageInfo.setStartPage(startPage);
     int startrow = (page - 1) * 10 + 1;
-
+    System.out.println(startrow);
     return reviewDAO.selectReviewKeyList(startrow, keyword);
   }
 

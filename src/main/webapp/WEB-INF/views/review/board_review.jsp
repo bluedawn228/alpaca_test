@@ -158,6 +158,7 @@
 				<!-- 임시저장 글 목록 보기 -->
 				<a href="./write_tempreview">
 					<button class="btn edit-btn">임시저장 글 보기</button>
+				</a>
 				
 				<!-- 키워드검색기능 -->
     			<form action="/review/board_review_key" method="post" class="board_review_key" name="board_review_key">
