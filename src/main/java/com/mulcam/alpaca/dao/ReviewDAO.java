@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import com.mulcam.alpaca.vo.FileVO;
+import com.mulcam.alpaca.vo.RCommVO;
 import com.mulcam.alpaca.vo.ReviewVO;
 
 @Mapper
@@ -86,4 +87,21 @@ public interface ReviewDAO {
   void deleteReview(int reviewId) throws Exception;
 
 
+
+  // 댓글기능
+
+  // insert 본댓글
+  void insertRComm(RCommVO rComm) throws Exception;
+
+  // update 댓글수 (게시글 넘버)
+  void updateCommCnt(String reviewId);
+
+  // 대댓글 사전작업 selectSeqMax
+  int selectSeqMax(int prtComId) throws Exception;
+
+  // insert 대댓글
+  void insertRCommChild(RCommVO rComm) throws Exception;
+
+  // select댓글List
+  List<RCommVO> selectRCommList(int reviewId) throws Exception;
 }

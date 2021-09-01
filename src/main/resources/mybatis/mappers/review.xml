@@ -225,20 +225,22 @@
 	
 	<!-- 게시판 상세 > 프로필 첨부파일 -->
 	
-	<select id="selectPfImg" resultType="fileVO" parameterType="String">
-		<![CDATA[
-		select
-        i.pf_img_id as "fileId"
-		,i.file_name as "fileName"
-		,i.file_size as "fileSize"
-		,i.file_content_type as "fileContentType"
-		,i.file_upload_date as "fileUploadDate"
-		,i.file_data as "fileData"
-		,i.regdate as "regdate"
-		,i.updatedate as "updatedate"
-		from tbl_member m, tbl_profile p, tbl_pf_img i
-		where email=#{email} and m.pf_id=p.pf_id and p.pf_img_id=i.pf_img_id
-		]]>		
+	<select id="selectRCommList" parameterType="int" resultType="rComm">
+		<![CDATA[  
+		select 
+        com_id as "comId"
+		,review_id as "reviewId"
+        ,email
+        ,content
+        ,prt_com_id as "prtComId"
+        ,seq
+        ,lev
+        ,regdate
+        ,updatedate
+		from tbl_r_comm 
+        where review_id=#{reviewId}
+		order by prt_com_id asc, seq asc
+		]]>
 	</select>
 	
 <!-- 	<delete id="deleteFile" parameterType="int">
