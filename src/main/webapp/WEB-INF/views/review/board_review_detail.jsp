@@ -73,7 +73,7 @@
   //댓글달기
 
     function addComment(viewId) {
-    	 	alert("왔다");
+    	 	alert("댓글");
     		if( $("#comment").val() == null || $("#comment").val() == "") {
           		alert("댓글을 입력하세요");	
           		return false;
