@@ -379,13 +379,19 @@
 							
 <!-- 댓글테스트 -->
 							
-							<div class="comments-container">
+		<div class="comments-container">
 		<h2>댓글</h2>
 		
-		
-
+		<c:forEach items="${commList}" var="comm" varStatus="status">
+	
 		<ul id="comments-list" class="comments-list">
 			<li>
+			
+				<!-- 본댓글 -->
+				<c:choose>
+					<c:when test="${comm.prtComId=0}"> 
+
+				
 				<div class="comment-main-level">
 					<!-- Avatar -->
 					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
@@ -393,8 +399,8 @@
 					<div class="comment-box">
 						<div class="comment-head">
 							<div class="comment-head-left">
-								<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-								<span>hace 20 minutos</span>
+								<h6 class="comment-name"><a href="http://creaticode.com/blog">${comm.name}</a></h6>
+								<span>${comm.regDate}</span>
 							</div>
 							<div class="comment-head-right">
 								<!-- if문:작성자만 보이기 -->
@@ -405,11 +411,17 @@
 							</div>
 						</div>
 						<div class="comment-content">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							${comm.content}
 						</div>
 					</div>
 				</div>
-				<!-- Respuestas de los comentarios -->
+				</c:when>
+				<!-- 본댓글 끝 -->
+				
+				
+				<!-- 대댓글 -->	
+				<c:otherwise>	
+				<c:if test="${comm.prtComId=comm.comId}">
 				<ul class="comments-list reply-list">
 					<li>
 						<!-- Avatar -->
@@ -418,8 +430,8 @@
 						<div class="comment-box">
 							<div class="comment-head">
 								<div class="comment-head-left">
-									<h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-									<span>hace 20 minutos</span>
+									<h6 class="comment-name"><a href="http://creaticode.com/blog">${comm.name}</a></h6>
+									<span>${comm.regDate}</span>
 								</div>
 								<div class="comment-head-right">
 									<!-- if문:작성자만 보이기 -->
@@ -430,24 +442,30 @@
 								</div>
 							</div>
 							<div class="comment-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+								${comm.content}
 							</div>
 						</div>
 					</li>
 				</ul>
+				</c:if>
+				</c:otherwise>
+				</c:choose>		
+				<!-- 대댓글 끝 -->
+				
 			</li>
 		</ul>
+		
+		</c:forEach>
 	</div>
-							
-							
-							
-							
-							
-							
-							
-							
-							
+
 							<!--  댓글 반복문 끝  -->
+							
+							
+							
+							
+							
+							
+							
 					
 					
 							<!--  댓글 입력 창 시작 -->
