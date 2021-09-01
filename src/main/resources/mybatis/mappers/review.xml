@@ -299,18 +299,19 @@
 	<select id="selectRCommList" parameterType="int" resultType="RCommVO">
 		<![CDATA[  
 		select 
-        com_id as "comId"
-		,review_id as "reviewId"
-        ,email
-        ,content
-        ,prt_com_id as "prtComId"
-        ,seq
-        ,lev
-        ,regdate
-        ,updatedate
-		from tbl_r_comm 
-        where review_id=#{reviewId}
-		order by prt_com_id asc, seq asc
+        m.name
+        ,c.com_id as "comId"
+		,c.review_id as "reviewId"
+        ,c.email
+        ,c.content
+        ,c.prt_com_id as "prtComId"
+        ,c.seq
+        ,c.lev
+        ,c.regdate
+        ,c.updatedate
+		from tbl_r_comm c, tbl_member m
+        where c.review_id=#{reviewId} and  c.email=m.email
+		order by c.prt_com_id asc, c.seq asc
 		]]>
 	</select>
 	

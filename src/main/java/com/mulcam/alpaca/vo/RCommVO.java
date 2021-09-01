@@ -3,6 +3,7 @@ package com.mulcam.alpaca.vo;
 import java.util.Date;
 
 public class RCommVO {
+  private String name;
   private int comId;
   private int reviewId;
   private String email;
@@ -13,6 +14,15 @@ public class RCommVO {
   private Date regdate;
   private Date updatedate;
 
+
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public int getComId() {
     return comId;

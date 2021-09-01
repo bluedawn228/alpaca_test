@@ -391,7 +391,7 @@
 													<div class="comment-head">
 														<div class="comment-head-left">
 															<h6 class="comment-name">
-																<a href="http://creaticode.com/blog">${comm.email}</a>
+																<a href="http://creaticode.com/blog">${comm.name}</a>
 															</h6>
 															<span>${comm.regdate}</span>
 														</div>
@@ -424,7 +424,7 @@
 														<div class="comment-head">
 															<div class="comment-head-left">
 																<h6 class="comment-name">
-																	<a href="http://creaticode.com/blog">${comm.email}</a>
+																	<a href="http://creaticode.com/blog">${comm.name}</a>
 																</h6>
 																<span>${comm.regdate}</span>
 															</div>
@@ -461,7 +461,7 @@
 
 					<!--  댓글 입력 창 시작 -->
 					<form name="comment-form" id="comment-form"
-						action="/review/addComment" method="post">
+						action="/review/addRComm" method="post">
 						<div class="card">
 							<div class="card-header">
 
