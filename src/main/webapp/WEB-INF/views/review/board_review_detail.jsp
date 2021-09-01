@@ -33,6 +33,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
 
 <!-- custom styles -->
+<link rel="stylesheet" href="/style/board_comment.css">
 <link rel="stylesheet" href="/style/main.css">
 <link rel="stylesheet" href="/style/board_review.css">
 <link rel="stylesheet" href="/style/pop_ups.css">
@@ -40,6 +41,7 @@
 <link rel="stylesheet" href="/style/board_detail.css">
 <link rel="stylesheet" href="/style/board_best_answers.css">
 <link rel="stylesheet" href="/style/mypage.css">
+
 
 <!-- 좋아요 관련 css javascript -->
 <style>
@@ -266,10 +268,10 @@
 
 					<div class="group-detail-row">
 						<div class="detail-row">
-							 <img class="detail-img" src="image/sky.jpg" alt=""> 
+							<img class="detail-img" src="image/sky.jpg" alt="">
 							<%-- <img src='<c:url value="/review/img/${profile.fileId}"/>'
 								width="100" class="img-thumbnail"> --%>
-							
+
 						</div>
 						<div class="detail-row">
 							<p class="text item">${review.name}</p>
@@ -333,17 +335,17 @@
 
 
 
-					<!-- 본문내용 -->
+						<!-- 본문내용 -->
 						<p>${review.content}</p>
 					</div>
 					<!-- 본문내용 끝 -->
-					
 
-		
-		
-					
-<!-- 댓글 test -->
-<%-- 					<article>
+
+
+
+
+					<!-- 댓글 test -->
+					<%-- 					<article>
 							<!--  댓글 반복문 시작  -->
  							<c:forEach items="${commList}" var="commList" varStatus="status">
 								<div class="card">
@@ -361,107 +363,110 @@
 								</div>
 								<br>
 							</c:forEach> --%>
-							
-							
-<!-- 댓글테스트 -->
-							
-		<div class="comments-container">
-		<h2>댓글</h2>
-		
-		<c:forEach items="${commList}" var="comm" varStatus="status">
-	
-		<ul id="comments-list" class="comments-list">
-			<li>
-			
-				<!-- 본댓글 -->
-				<c:choose>
-					<c:when test="${comm.prtComId=0}"> 
 
-				
-				<div class="comment-main-level">
-					<!-- Avatar -->
-					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-					<!-- Contenedor del Comentario -->
-					<div class="comment-box">
-						<div class="comment-head">
-							<div class="comment-head-left">
-								<h6 class="comment-name"><a href="http://creaticode.com/blog">${comm.name}</a></h6>
-								<span>${comm.regDate}</span>
-							</div>
-							<div class="comment-head-right">
-								<!-- if문:작성자만 보이기 -->
-								<button>수정</button>
-								<button>삭제</button>
-								<!-- if문 끝 -->
-								<button>답글달기</button>
-							</div>
-						</div>
-						<div class="comment-content">
-							${comm.content}
-						</div>
+
+					<!-- 댓글테스트 -->
+
+					<div class="comments-container">
+						<h2>댓글</h2>
+
+						<c:forEach items="${commList}" var="comm" varStatus="status">
+
+							<ul id="comments-list" class="comments-list">
+								<li>
+									
+									<c:choose>
+										<c:when test="${comm.lev==0}">
+
+
+											<div class="comment-main-level">
+												
+												<div class="comment-avatar">
+													<img
+														src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+														alt="">
+												</div>
+												
+												<div class="comment-box">
+													<div class="comment-head">
+														<div class="comment-head-left">
+															<h6 class="comment-name">
+																<a href="http://creaticode.com/blog">${comm.email}</a>
+															</h6>
+															<span>${comm.regdate}</span>
+														</div>
+														<div class="comment-head-right">
+															
+															<button>수정</button>
+															<button>삭제</button>
+															
+															<button>답글달기</button>
+														</div>
+													</div>
+													<div class="comment-content">${comm.content}</div>
+												</div>
+											</div>
+										</c:when>
+										
+
+
+										
+										<c:otherwise>
+											<ul class="comments-list reply-list">
+												<li>
+													
+													<div class="comment-avatar">
+														<img
+															src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+															alt="">
+													</div> 
+													<div class="comment-box">
+														<div class="comment-head">
+															<div class="comment-head-left">
+																<h6 class="comment-name">
+																	<a href="http://creaticode.com/blog">${comm.email}</a>
+																</h6>
+																<span>${comm.regdate}</span>
+															</div>
+															<div class="comment-head-right">
+																
+																<button>수정</button>
+																<button>삭제</button>
+																
+																<button>답글달기</button>
+															</div>
+														</div>
+														<div class="comment-content">${comm.content}</div>
+													</div>
+												</li>
+											</ul>
+										</c:otherwise>
+									</c:choose> 
+
+								</li>
+							</ul>
+
+						</c:forEach>
 					</div>
-				</div>
-				</c:when>
-				<!-- 본댓글 끝 -->
-				
-				
-				<!-- 대댓글 -->	
-				<c:otherwise>	
-				<c:if test="${comm.prtComId=comm.comId}">
-				<ul class="comments-list reply-list">
-					<li>
-						<!-- Avatar -->
-						<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-						<!-- Contenedor del Comentario -->
-						<div class="comment-box">
-							<div class="comment-head">
-								<div class="comment-head-left">
-									<h6 class="comment-name"><a href="http://creaticode.com/blog">${comm.name}</a></h6>
-									<span>${comm.regDate}</span>
-								</div>
-								<div class="comment-head-right">
-									<!-- if문:작성자만 보이기 -->
-									<button>수정</button>
-									<button>삭제</button>
-									<!-- if문 끝 -->
-									<button>답글달기</button>
-								</div>
-							</div>
-							<div class="comment-content">
-								${comm.content}
-							</div>
-						</div>
-					</li>
-				</ul>
-				</c:if>
-				</c:otherwise>
-				</c:choose>		
-				<!-- 대댓글 끝 -->
-				
-			</li>
-		</ul>
-		
-		</c:forEach>
-	</div>
 
-							<!--  댓글 반복문 끝  -->
-							
-							
-							
-							
-							
-							
-							
-					
-					
-							<!--  댓글 입력 창 시작 -->
-							<form name="comment-form" id="comment-form"
-								action="/review/addComment" method="post">
-								<div class="card">
-									<div class="card-header">
+					<!--  댓글 반복문 끝  -->
 
-										<!-- 댓글 로그인 시작 -->
-<%-- 										<c:choose>
+
+
+
+
+
+
+
+
+					<!--  댓글 입력 창 시작 -->
+					<form name="comment-form" id="comment-form"
+						action="/review/addComment" method="post">
+						<div class="card">
+							<div class="card-header">
+
+								<!-- 댓글 로그인 시작 -->
+								<%-- 										<c:choose>
 											<c:when test="${userInfo.id eq null }">
 												<a class="btn btn-sm btn-info"
 													href="./auth-signin?board=diary-detail&bidx=${diary.diaryId}">로그인</a>
@@ -477,36 +482,38 @@
 
 											</c:otherwise>
 										</c:choose> --%>
-										<!--  댓글 로그인 끝  -->
+								<!--  댓글 로그인 끝  -->
+							</div>
+							<div style="width: 100%; text-align: center;">
+								<div
+									style="display: inline-block; width: 50%; text-align: center;">
+
+									<div style="display: inline-block; width: 50%;">
+
+										<textarea class="form-control" name="comment" id="comment"
+											placeholder="댓글을 입력하세요" id="floatingTextarea2"
+											style="height: 100px; width: 300px; float: right"></textarea>
+
 									</div>
-									<div style="width: 100%; text-align: center;">
-										<div
-											style="display: inline-block; width: 50%; text-align: center;">
+									<div style="display: inline-block;">
 
-											<div style="display: inline-block; width: 50%;">
+										<button class="btn btn-primary" type="button" id="comment-btn"
+											style="height: 100px; float: left;"
+											onclick="addComment(${view.viewId})">댓글 달기</button>
 
-												<textarea class="form-control" name="comment" id="comment"
-													placeholder="댓글을 입력하세요" id="floatingTextarea2"
-													style="height: 100px; width: 300px; float: right"></textarea>
-
-											</div>
-											<div style="display: inline-block;">
-
-												<button class="btn btn-primary" type="button" id="comment-btn" style="height: 100px; float: left;" onclick="addComment(${view.viewId})">댓글 달기</button>
-
-											</div>
-										</div>
 									</div>
 								</div>
-							</form>
-							<br>
-							<!--  댓글 입력 창 끝 -->
-							<div style="clear: both"></div>
-							
-						</article>
-					
-					
-					
+							</div>
+						</div>
+					</form>
+					<br>
+					<!--  댓글 입력 창 끝 -->
+					<div style="clear: both"></div>
+
+					</article>
+
+
+
 				</div>
 			</div>
 		</div>

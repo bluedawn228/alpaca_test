@@ -21,17 +21,14 @@ ul {
   list-style-type: none;
 }
 
-body {
-  font-family: "Roboto", Arial, Helvetica, Sans-serif, Verdana;
-  background: #dee1e3;
-}
-
 /** ====================
 * Lista de Comentarios
 =======================*/
 .comments-container {
   margin: 60px auto 15px;
+  padding: 5px;
   width: 768px;
+  background: #dee1e3;
 }
 
 .comments-container h1 {
@@ -181,8 +178,10 @@ body {
 .reply-list .comment-box {
   width: 610px;
 }
+
+/* 댓글 해드 */
 .comment-box .comment-head {
-  background: #fcfcfc;
+  background: #e2f1f7;
   padding: 10px 12px;
   border-bottom: 1px solid #e5e5e5;
   overflow: hidden;
@@ -207,6 +206,12 @@ body {
   color: #03658c;
 }
 
+.comment-box .comment-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .comment-box .comment-name {
   color: #283035;
   font-size: 14px;
@@ -227,8 +232,9 @@ body {
   top: 1px;
 }
 
+/* 댓글내용 */
 .comment-box .comment-content {
-  background: #fff;
+  background: #fcfcfc;
   padding: 12px;
   font-size: 15px;
   color: #595959;

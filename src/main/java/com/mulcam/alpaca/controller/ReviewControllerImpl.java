@@ -3,6 +3,7 @@ package com.mulcam.alpaca.controller;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,8 +123,13 @@ public class ReviewControllerImpl implements ReviewController {
     try {
       ReviewVO review = reviewService.getBoard(reviewId);
       FileVO file = reviewService.getFile(review.getFileId());
-      FileVO profile = reviewService.getPfImg(review.getEmail());
-      mv.addObject("profile", profile);
+      // FileVO profile = reviewService.getPfImg(review.getEmail());
+
+      // 댓글목록 조회
+      ArrayList<RCommVO> commList = reviewService.getRCommList(review.getReviewId());
+
+      mv.addObject("commList", commList);
+      // mv.addObject("profile", profile);
       mv.addObject("file", file);
       mv.addObject("review", review);
       mv.addObject("page", page);

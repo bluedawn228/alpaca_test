@@ -1,5 +1,6 @@
 package com.mulcam.alpaca.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.mulcam.alpaca.vo.FileVO;
 import com.mulcam.alpaca.vo.PageInfo;
@@ -36,6 +37,8 @@ public interface ReviewService {
   void addRComm(RCommVO rComm) throws Exception;
 
   void addRCommChild(RCommVO rComm) throws Exception;
+
+  ArrayList<RCommVO> getRCommList(int reviewId) throws Exception;
 
   // void regReply(ReviewVO review) throws Exception;
   //

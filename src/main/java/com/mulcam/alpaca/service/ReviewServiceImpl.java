@@ -1,5 +1,6 @@
 package com.mulcam.alpaca.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -142,6 +143,12 @@ public class ReviewServiceImpl implements ReviewService {
     rComm.setSeq(seqMax);
     reviewDAO.insertRCommChild(rComm);
     reviewDAO.updateCommCnt(rComm.getReviewId());
+  }
+
+  // 댓글 조회
+  @Override
+  public ArrayList<RCommVO> getRCommList(int reviewId) throws Exception {
+    return (ArrayList<RCommVO>) reviewDAO.selectRCommList(reviewId);
   }
 
 
