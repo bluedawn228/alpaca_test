@@ -510,9 +510,6 @@
 					<!--  댓글 입력 창 끝 -->
 					<div style="clear: both"></div>
 
-					</article>
-
-
 
 				</div>
 			</div>
