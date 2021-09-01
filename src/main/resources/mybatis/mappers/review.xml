@@ -222,26 +222,7 @@
 	]]>
 	</select>
 	
-	
-	<!-- 게시판 상세 > 프로필 첨부파일 -->
-	
-	<select id="selectRCommList" parameterType="int" resultType="rComm">
-		<![CDATA[  
-		select 
-        com_id as "comId"
-		,review_id as "reviewId"
-        ,email
-        ,content
-        ,prt_com_id as "prtComId"
-        ,seq
-        ,lev
-        ,regdate
-        ,updatedate
-		from tbl_r_comm 
-        where review_id=#{reviewId}
-		order by prt_com_id asc, seq asc
-		]]>
-	</select>
+
 	
 <!-- 	<delete id="deleteFile" parameterType="int">
 		<![CDATA[
@@ -281,11 +262,11 @@
 	
 	
 	<!-- insert 본댓글 -->
-	<insert id="insertRComm" parameterType="rCommVO">
+	<insert id="insertRComm" parameterType="RCommVO">
 		<![CDATA[
 		insert into tbl_r_comm
 		(com_id, review_id, email, content, prt_com_id, seq, lev, regdate, updatedate)
-		values(tbl_r_comm_sq.nextval, #{reviewId}, #{email}, #{content}, r_comm_sq.currval, 0, 0, sysdate, sysdate)
+		values(r_comm_sq.nextval, #{reviewId}, #{email}, #{content}, r_comm_sq.currval, 0, 0, sysdate, sysdate)
 		]]>	
 	</insert>
 	
@@ -305,20 +286,30 @@
 	</select>
 	
 	<!-- insert 대댓글 -->
-	<insert id="insertRComm" parameterType="rCommVO">
+	<insert id="insertRCommChild" parameterType="RCommVO">
 		<![CDATA[
 		insert into tbl_r_comm
 		(com_id, review_id, email, content, prt_com_id, seq, lev, regdate, updatedate)
-		values(tbl_r_comm_sq.nextval, #{reviewId}, #{email}, #{content}, #{comId}, #{seq}, 1, sysdate, sysdate)
+		values(r_comm_sq.nextval, #{reviewId}, #{email}, #{content}, #{comId}, #{seq}, 1, sysdate, sysdate)
 		]]>	
 	</insert>
 	
 	<!-- select댓글List -->
-	<select id="selectRCommList" parameterType="int" resultType="rComm">
+	<select id="selectRCommList" parameterType="int" resultType="RCommVO">
 		<![CDATA[  
-		select *
-		from tbl_r_comm
-		where review_id=#{reviewId} order by prt_com_id asc, seq asc
+		select 
+        com_id as "comId"
+		,review_id as "reviewId"
+        ,email
+        ,content
+        ,prt_com_id as "prtComId"
+        ,seq
+        ,lev
+        ,regdate
+        ,updatedate
+		from tbl_r_comm 
+        where review_id=#{reviewId}
+		order by prt_com_id asc, seq asc
 		]]>
 	</select>
 	

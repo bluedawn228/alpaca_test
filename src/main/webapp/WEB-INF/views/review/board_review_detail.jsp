@@ -266,11 +266,10 @@
 
 					<div class="group-detail-row">
 						<div class="detail-row">
-							<!-- <img class="detail-img" src="image/sky.jpg" alt=""> -->
-							<img src='<c:url value="/review/img/${profile.fileId}"/>'
-								width="100" class="img-thumbnail">
-												
-							<%-- "review/img/${profile.fileId}" --%>
+							 <img class="detail-img" src="image/sky.jpg" alt=""> 
+							<%-- <img src='<c:url value="/review/img/${profile.fileId}"/>'
+								width="100" class="img-thumbnail"> --%>
+							
 						</div>
 						<div class="detail-row">
 							<p class="text item">${review.name}</p>
@@ -340,24 +339,11 @@
 					<!-- 본문내용 끝 -->
 					
 
-					<!-- 	<textarea name="" id="" cols="30" rows="10" class="item detail-row"></textarea> -->
-
-<!-- 					<p class="detail-row">
-						<img src="image/austria.jpg" alt="" class="reply-img"> <small>댓글:
-						</small> <small>id: </small> <small>댓글: </small> <small>댓글: </small> <small>댓글:
-						</small>
-						<button class="btn">삭제하기</button>
-					</p>
-
-					<div class="detail-row">
-						<input type="text" class="comment">
-						<button class="btn">등록하기</button>
-					</div> -->
 		
 		
 					
 <!-- 댓글 test -->
-					<article>
+<%-- 					<article>
 							<!--  댓글 반복문 시작  -->
  							<c:forEach items="${commList}" var="commList" varStatus="status">
 								<div class="card">
@@ -374,7 +360,7 @@
 									</div>
 								</div>
 								<br>
-							</c:forEach>
+							</c:forEach> --%>
 							
 							
 <!-- 댓글테스트 -->

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.mulcam.alpaca.vo.RCommVO;
 import com.mulcam.alpaca.vo.ReviewVO;
 
 public interface ReviewController {
@@ -39,6 +40,10 @@ public interface ReviewController {
 
   ModelAndView removeBoard(@RequestParam("reviewId") int reviewId,
       @RequestParam(value = "page", required = false, defaultValue = "1") int page);
+
+
+  ModelAndView addRComm(@ModelAttribute RCommVO rComm) throws Exception;
+
   //
   // ModelAndView replyform(@RequestParam("board_num") int board_num,
   // @RequestParam(value = "page", required = false, defaultValue = "1") int page);

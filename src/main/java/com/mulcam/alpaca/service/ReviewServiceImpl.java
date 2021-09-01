@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.mulcam.alpaca.dao.ReviewDAO;
 import com.mulcam.alpaca.vo.FileVO;
 import com.mulcam.alpaca.vo.PageInfo;
+import com.mulcam.alpaca.vo.RCommVO;
 import com.mulcam.alpaca.vo.ReviewVO;
 
 @Service
@@ -21,7 +22,7 @@ public class ReviewServiceImpl implements ReviewService {
       reviewDAO.insertRImg(rImg);
       review.setFileId(fileId);
     } else {
-      review.setFileId(1);
+      review.setFileId(0);
     }
     review.setEmail("e@naver.com");
     review.setCommCnt(0);
@@ -75,23 +76,6 @@ public class ReviewServiceImpl implements ReviewService {
   }
 
 
-  // @Override
-  // public List<Map<String, ReviewVO>> getNameList(List<ReviewVO> articleList) throws Exception {
-  //
-  // // List<Map<String, Object>> 라는형식으로, 리스트 안에 쿼리에서 불러온 List를 넣어준다.
-  // List<Map<String, ReviewVO>> mapList = new ArrayList<>();
-  //
-  // for (ReviewVO review : articleList) {
-  // Map<String, ReviewVO> nameMap = new HashMap<>();
-  // String name = reviewDAO.selectNameByE(review.getEmail());
-  // nameMap.put(name, review);
-  // mapList.add(nameMap);
-  // }
-  // return mapList;
-  // }
-
-
-
   @Override
   public ReviewVO getBoard(int reviewId) throws Exception {
     reviewDAO.updateViewCount(reviewId); // 조회수 증가
@@ -139,6 +123,28 @@ public class ReviewServiceImpl implements ReviewService {
     // throw new Exception("삭제 권한 없음");
     reviewDAO.deleteReview(reviewId);
   }
+
+
+
+  // 본댓글달기
+  @Override
+  public void addRComm(RCommVO rComm) throws Exception {
+    rComm.setEmail("e@naver.com");
+    reviewDAO.insertRComm(rComm);
+    reviewDAO.updateCommCnt(rComm.getReviewId());
+  }
+
+  // 대댓글달기
+  @Override
+  public void addRCommChild(RCommVO rComm) throws Exception { // 부모의 comId가져오기
+    int seqMax = reviewDAO.selectSeqMax(rComm.getPrtComId());
+    rComm.setEmail("e@naver.com");
+    rComm.setSeq(seqMax);
+    reviewDAO.insertRCommChild(rComm);
+    reviewDAO.updateCommCnt(rComm.getReviewId());
+  }
+
+
 
 }
 

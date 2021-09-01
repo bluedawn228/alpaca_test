@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mulcam.alpaca.service.ReviewService;
 import com.mulcam.alpaca.vo.FileVO;
 import com.mulcam.alpaca.vo.PageInfo;
+import com.mulcam.alpaca.vo.RCommVO;
 import com.mulcam.alpaca.vo.ReviewVO;
 
 @Controller
@@ -122,7 +123,6 @@ public class ReviewControllerImpl implements ReviewController {
       ReviewVO review = reviewService.getBoard(reviewId);
       FileVO file = reviewService.getFile(review.getFileId());
       FileVO profile = reviewService.getPfImg(review.getEmail());
-
       mv.addObject("profile", profile);
       mv.addObject("file", file);
       mv.addObject("review", review);
@@ -245,6 +245,28 @@ public class ReviewControllerImpl implements ReviewController {
     }
     return mv;
   }
+
+
+  // 댓글 달기
+  @Override
+  @RequestMapping(value = "/addComm", method = RequestMethod.POST)
+  public ModelAndView addRComm(@ModelAttribute RCommVO rComm) throws Exception {
+
+    System.out.println("addComm controller");
+    ModelAndView mv = new ModelAndView();
+
+    try {
+      reviewService.addRComm(rComm);
+      mv.setViewName("redirect:/review/board_review_detail?reviewId=" + rComm.getReviewId());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      mv.addObject("err", "오류 발생");
+      mv.setViewName("error");
+    }
+    return mv;
+  }
+
 
 
   //

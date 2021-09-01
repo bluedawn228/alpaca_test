@@ -94,7 +94,7 @@ public interface ReviewDAO {
   void insertRComm(RCommVO rComm) throws Exception;
 
   // update 댓글수 (게시글 넘버)
-  void updateCommCnt(String reviewId);
+  void updateCommCnt(int reviewId);
 
   // 대댓글 사전작업 selectSeqMax
   int selectSeqMax(int prtComId) throws Exception;
