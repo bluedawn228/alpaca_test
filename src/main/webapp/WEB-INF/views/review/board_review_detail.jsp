@@ -75,9 +75,9 @@
     };
     
     
-  //댓글달기
-    function addComment(viewId) {
-    	 	alert("댓글");
+  //본댓글달기
+    function addComment(reviewId) {
+    	 	alert(reviewId);
     		if( $("#content").val() == null || $("#content").val() == "") {
           		alert("댓글을 입력하세요");	
           		return false;
@@ -464,13 +464,15 @@
 										<textarea class="form-control" name="content" id="content"
 											placeholder="댓글을 입력하세요" id="floatingTextarea2"
 											style="height: 100px; width: 300px; float: right"></textarea>
+											
+										<input type="hidden" name="reviewId" value="${review.reviewId}">
 
 									</div>
 									<div style="display: inline-block;">
 
 										<button class="btn btn-primary" type="button" id="comment-btn"
 											style="height: 100px; float: left;"
-											onclick="addComment(${view.viewId})">댓글 달기</button>
+											onclick="addComment(${review.reviewId});">댓글 달기</button>
 
 									</div>
 								</div>

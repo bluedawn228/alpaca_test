@@ -258,7 +258,7 @@ public class ReviewControllerImpl implements ReviewController {
   @RequestMapping(value = "/addComm", method = RequestMethod.POST)
   public ModelAndView addRComm(@ModelAttribute RCommVO rComm) throws Exception {
 
-    System.out.println("addComm controller");
+    System.out.println(rComm.getReviewId());
     ModelAndView mv = new ModelAndView();
 
     try {
