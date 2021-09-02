@@ -268,7 +268,7 @@ public class ReviewControllerImpl implements ReviewController {
     } catch (Exception e) {
       e.printStackTrace();
       mv.addObject("err", "오류 발생");
-      mv.setViewName("error");
+      mv.setViewName("/review/err");
     }
     return mv;
   }

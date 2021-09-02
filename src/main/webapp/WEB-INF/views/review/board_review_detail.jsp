@@ -28,6 +28,9 @@
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
 
 <!-- bootstrap
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
@@ -53,7 +56,6 @@
 
 <script>        
     function likeCnt(reviewId) {
-        //alert(articleId);
         $.ajax({
               type: "GET",
               url: "./reviewLikeCall", //요청 URL 
@@ -72,23 +74,16 @@
           return false; // 페이지 리로딩을 막는다. 
     };
     
+    
   //댓글달기
-
     function addComment(viewId) {
     	 	alert("댓글");
-    		if( $("#comment").val() == null || $("#comment").val() == "") {
+    		if( $("#content").val() == null || $("#content").val() == "") {
           		alert("댓글을 입력하세요");	
           		return false;
           	  } 
-
-/*     		  <c:choose>
-    	          <c:when test="${userInfo.id eq null }">
-    	          		alert("댓글을 다시려면 로그인이 필요합니다.");	 
-    	          </c:when>
-    	          <c:otherwise> */
-    	          	$("#comment-form").submit();	        		
-/*     	          </c:otherwise>
-          	  </c:choose> */
+    		alert("comment-form");
+          	$("#comment-form").submit();
 
     }
  
@@ -341,31 +336,7 @@
 					<!-- 본문내용 끝 -->
 
 
-
-
-
-					<!-- 댓글 test -->
-					<%-- 					<article>
-							<!--  댓글 반복문 시작  -->
- 							<c:forEach items="${commList}" var="commList" varStatus="status">
-								<div class="card">
-									<div class="card-header">${commList.comId} 님</div>
-									<div class="card-body">
-										<blockquote class="blockquote mb-0">
-											<p>${commList.content}</p>
-											<footer class="blockquote-footer">
-												<cite title="Source Title"><fmt:formatDate
-														value="${commList.regdate}" pattern="yyyy.MM.dd hh:mm:ss" /></cite>
-
-											</footer>
-										</blockquote>
-									</div>
-								</div>
-								<br>
-							</c:forEach> --%>
-
-
-					<!-- 댓글테스트 -->
+					<!-- 댓글목록 -->
 
 					<div class="comments-container">
 						<h2>댓글</h2>
@@ -449,7 +420,7 @@
 						</c:forEach>
 					</div>
 
-					<!--  댓글 반복문 끝  -->
+					<!--  댓글 목록 끝  -->
 
 
 
@@ -461,7 +432,7 @@
 
 					<!--  댓글 입력 창 시작 -->
 					<form name="comment-form" id="comment-form"
-						action="/review/addRComm" method="post">
+						action="/review/addComm" method="post">
 						<div class="card">
 							<div class="card-header">
 
@@ -490,7 +461,7 @@
 
 									<div style="display: inline-block; width: 50%;">
 
-										<textarea class="form-control" name="comment" id="comment"
+										<textarea class="form-control" name="content" id="content"
 											placeholder="댓글을 입력하세요" id="floatingTextarea2"
 											style="height: 100px; width: 300px; float: right"></textarea>
 
